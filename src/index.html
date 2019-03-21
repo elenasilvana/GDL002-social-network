@@ -4,8 +4,43 @@
     <meta charset="utf-8">
     <title>Social Network</title>
     <link rel="stylesheet" href="style.css" />
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+    <script>
+  // Initialize Firebase
+  let config = {
+    apiKey: "AIzaSyBu8DRf0khnKelEHJ-8c19lUIZjYKipgtQ",
+    authDomain: "enrraizados-f3f69.firebaseapp.com",
+    databaseURL: "https://enrraizados-f3f69.firebaseio.com",
+    projectId: "enrraizados-f3f69",
+    storageBucket: "enrraizados-f3f69.appspot.com",
+    messagingSenderId: "970149378857"
+  };
+  firebase.initializeApp(config);
+</script>
 </head>
 <body>
+        <header>
+                ENRAIZADOS
+            </header>    
+                <main>
+                    <p>
+                        Creamos este espacio para todos aquellos amantes de las plantas, sus bondades, sus frutos y sus diferentes usos. 
+                    </p>  
+            <p>correo
+                        <input type="e-mail" name="correo" id="mail">
+                    </p>
+                    
+                    <p>contraseña <input type="password" name="contraseña" id="pwd"></p>
+                    
+                    <br>
+                    <button id="btn-login">INGRESAR</button>
+                    <button>CREAR CUENTA</button>
+                    
+                </main>
+        
+        <script src="main.js"></script>    
+        <script src="app.js"></script>    
     
 </body>
 </html>
