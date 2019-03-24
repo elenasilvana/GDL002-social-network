@@ -2,7 +2,7 @@
 
 function signUp(){
     const mail = document.getElementById('mail').value;
-    console.log(mail);
+   // console.log(mail);
     const password = document.getElementById('pwd').value;
    //observer();
 	firebase.auth().createUserWithEmailAndPassword(mail, password).catch(function(error) {
@@ -39,6 +39,7 @@ document.getElementById('btn-login').addEventListener('click', login);
 
 function observer () {
     firebase.auth().onAuthStateChanged(function(user) {
+      console.log(user);
         if (user) {
             showValidation();
             
@@ -65,17 +66,20 @@ function showValidation (){
     const validateUser = document.getElementById("validateUser");
     validateUser.innerHTML = "";
     validateUser.innerHTML =  `<p>BIENVENIDO </p>
-    <button onClick ="close()" id="logOut">CERRAR SESIÓN</button>`;
+    <button id="logOut">CERRAR SESIÓN</button>`;
 
 }
+document.getElementById("logOut").addEventListener('click', close);
+
 function close(){
-    firebase.auth().signOut()
-    .then(function(){
+  console.log('hola')
+    firebase.auth().signOut();
+    /*.then(function(){
         console.log('Saliendo');
         
     })
     .catch(function(error){
         console.log(error);
         
-    })
+    })*/
 }
