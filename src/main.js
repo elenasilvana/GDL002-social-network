@@ -39,8 +39,9 @@ document.getElementById('btn-login').addEventListener('click', login);
 
 function observer () {
     firebase.auth().onAuthStateChanged(function(user) {
-      console.log(user);
+      //console.log(user);
         if (user) {
+          console.log('Existe usuario activo');
             showValidation();
             
           // User is signed in.
@@ -62,14 +63,6 @@ function observer () {
 }
 observer();
 
-function showValidation (){
-    const validateUser = document.getElementById("validateUser");
-    validateUser.innerHTML = "";
-    validateUser.innerHTML =  `<p>BIENVENIDO </p>
-    <button id="logOut">CERRAR SESIÓN</button>`;
-
-}
-document.getElementById("logOut").addEventListener('click', close);
 
 function close(){
   console.log('hola')
@@ -82,4 +75,14 @@ function close(){
         console.log(error);
         
     })*/
+}
+
+function showValidation (){
+    const validateUser = document.getElementById("validateUser");
+    validateUser.innerHTML = "";
+    //validateUser.innerHTML = "Solo lo ve usuario activo";
+    validateUser.innerHTML =  `<p>BIENVENIDO </p>
+    <button id="logOut">CERRAR SESIÓN</button>`;
+
+    document.getElementById("logOut").addEventListener('click', close);
 }
