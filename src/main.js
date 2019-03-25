@@ -34,8 +34,40 @@ function login(){
         console.log(errorCode);
         console.log(errorMessage);
       });
+  closeModal();
 }
 document.getElementById('btn-login').addEventListener('click', login);
+
+// Get the modal
+const loginModal = document.getElementById('login-modal');
+
+// Get the button that opens the modal
+const loginModalbBtn = document.getElementById("login-Modal-Btn");
+
+// Get the <span> element that closes the modal
+const span = document.getElementsByClassName("closeLoginModal")[0];
+
+// When the user clicks the button, open the modal 
+loginModalbBtn.addEventListener("click", showModal);
+//btn.onclick = 
+function showModal() {
+  loginModal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+//span.onclick = 
+span.addEventListener("click", closeModal)
+function closeModal() {
+  loginModal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+//creo que debemos corregir esta parte, pero no sé como
+window.onclick = function(event) {
+  if (event.target == loginModal) {
+    loginModal.style.display = "none";
+  }
+}
 
 function observer () {
     firebase.auth().onAuthStateChanged(function(user) {
@@ -67,14 +99,8 @@ observer();
 function close(){
   console.log('hola')
     firebase.auth().signOut();
-    /*.then(function(){
-        console.log('Saliendo');
-        
-    })
-    .catch(function(error){
-        console.log(error);
-        
-    })*/
+    const validateUser = document.getElementById("validateUser");
+    validateUser.innerHTML = "";
 }
 
 function showValidation (){

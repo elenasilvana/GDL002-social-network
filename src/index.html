@@ -19,9 +19,10 @@
           };
           firebase.initializeApp(config);
         </script>
-<!-- hasta aquí -->
+<!-- hasta aquí cuenta de Elena -->
 
-<!-- cuenta de Selene
+
+<!-- cuenta de Selene 
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
     <script>
   // Initialize Firebase
@@ -57,8 +58,30 @@
                     
                     <br>
                     <button id="btn-signUp">CREAR CUENTA</button>
+                    <h3>Ya eres parte de nuestra comunidad?</h3>
+                    <!-- Open The Modal -->
+                    <button id="login-Modal-Btn">ingresa aquí</button>
                     
-                </section> 
+                 </section> 
+                 <!-- The login Modal -->
+                <div id="login-modal" class="modal">
+
+                      <!-- Login modal content -->
+                    <div class="modal-content">
+                        
+                        <span class="closeLoginModal">&times;</span>
+                        
+                        <section>
+                          <h3>INGRESO DE USUARIOS</h3>
+                          <p> correo <input type="e-mail" name="correo" id="loginMail"></p>
+                          <p> contraseña <input type="password" name="contraseña" id="loginPwd"></p>
+                          <br>
+                          <button id="btn-login">INGRESAR</button>
+                        </section>
+                    </div>
+                </div>
+
+                <!--
                     <section>
                         <h3>INGRESO DE USUARIOS</h3>
                         <p>correo
@@ -70,6 +93,7 @@
                             <button id="btn-login">INGRESAR</button>
                            
                     </section>
+                -->
                     <div id="validateUser">
                         
                     </div>
