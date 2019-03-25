@@ -2,9 +2,7 @@
 
 function signUp(){
     const mail = document.getElementById('mail').value;
-   // console.log(mail);
     const password = document.getElementById('pwd').value;
-   //observer();
 	firebase.auth().createUserWithEmailAndPassword(mail, password).catch(function(error) {
         console.log(mail);
         
@@ -49,13 +47,11 @@ const span = document.getElementsByClassName("closeLoginModal")[0];
 
 // When the user clicks the button, open the modal 
 loginModalbBtn.addEventListener("click", showModal);
-//btn.onclick = 
 function showModal() {
   loginModal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
-//span.onclick = 
 span.addEventListener("click", closeModal)
 function closeModal() {
   loginModal.style.display = "none";
@@ -69,6 +65,7 @@ window.onclick = function(event) {
   }
 }
 
+//function that checks if the user is already log
 function observer () {
     firebase.auth().onAuthStateChanged(function(user) {
       //console.log(user);
@@ -93,20 +90,22 @@ function observer () {
         }
       });
 }
+
 observer();
 
 
 function close(){
-  console.log('hola')
+  //log out
     firebase.auth().signOut();
+    //clean the div that shows the button "Cerrar sesion"
     const validateUser = document.getElementById("validateUser");
     validateUser.innerHTML = "";
 }
 
 function showValidation (){
+    //creates and shows a button for logout only if user is already login
     const validateUser = document.getElementById("validateUser");
     validateUser.innerHTML = "";
-    //validateUser.innerHTML = "Solo lo ve usuario activo";
     validateUser.innerHTML =  `<p>BIENVENIDO </p>
     <button id="logOut">CERRAR SESIÓN</button>`;
 
