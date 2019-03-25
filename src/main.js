@@ -3,8 +3,13 @@
 function signUp(){
     const mail = document.getElementById('mail').value;
     const password = document.getElementById('pwd').value;
-	firebase.auth().createUserWithEmailAndPassword(mail, password).catch(function(error) {
-        console.log(mail);
+
+	firebase.auth().createUserWithEmailAndPassword(mail, password)
+  .then(function(){
+          verify();
+        })
+  .catch(function(error) {
+        
         
         // Handle Errors here.
         var errorCode = error.code;
@@ -71,11 +76,15 @@ function observer () {
       //console.log(user);
         if (user) {
           console.log('Existe usuario activo');
-            showValidation();
+            showValidation(user);
             
           // User is signed in.
           var displayName = user.displayName;
+          console.log(user.email);
           var email = user.email;
+          console.log('*****************');
+          console.log(user.emailVerified);
+          console.log('*****************');
           var emailVerified = user.emailVerified;
           var photoURL = user.photoURL;
           var isAnonymous = user.isAnonymous;
@@ -102,12 +111,30 @@ function close(){
     validateUser.innerHTML = "";
 }
 
-function showValidation (){
+function showValidation (user){
     //creates and shows a button for logout only if user is already login
+    var user = user;
     const validateUser = document.getElementById("validateUser");
-    validateUser.innerHTML = "";
-    validateUser.innerHTML =  `<p>BIENVENIDO </p>
-    <button id="logOut">CERRAR SESIÓN</button>`;
-
+    if(user.emailVerified){
+      validateUser.innerHTML = "";
+      validateUser.innerHTML =  `<h3>BIENVENIDO </h3>
+                    <p>Ya eres parte de nuestra comunidad</p>
+      <button id="logOut">CERRAR SESIÓN</button>`;
+        
     document.getElementById("logOut").addEventListener('click', close);
+    }
+
+}
+
+function verify(){
+  //verificación de correo electrónico
+  let user = firebase.auth().currentUser;
+
+  user.sendEmailVerification().then(function() {
+    console.log('Enviando correo')
+    // Email sent.
+  }).catch(function(error) {
+    console.log(error);
+    // An error happened.
+  });
 }
