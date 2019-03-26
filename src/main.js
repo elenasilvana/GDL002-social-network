@@ -4,13 +4,12 @@ function signUp(){
     const mail = document.getElementById('mail').value;
     const password = document.getElementById('pwd').value;
 
-	firebase.auth().createUserWithEmailAndPassword(mail, password)
-  .then(function(){
+        firebase.auth().createUserWithEmailAndPassword(mail, password)
+        .then(function(){
           verify();
-        })
-  .catch(function(error) {
-        
-        
+          })
+        .catch(function(error) {
+       
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -37,38 +36,13 @@ function login(){
         console.log(errorCode);
         console.log(errorMessage);
       });
-  closeModal();
+  
 }
 document.getElementById('btn-login').addEventListener('click', login);
 
-// Get the modal
-const loginModal = document.getElementById('login-modal');
-
-// Get the button that opens the modal
-const loginModalbBtn = document.getElementById("login-Modal-Btn");
-
-// Get the <span> element that closes the modal
-const span = document.getElementsByClassName("closeLoginModal")[0];
-
-// When the user clicks the button, open the modal 
-loginModalbBtn.addEventListener("click", showModal);
-function showModal() {
-  loginModal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.addEventListener("click", closeModal)
-function closeModal() {
-  loginModal.style.display = "none";
-}
 
 // When the user clicks anywhere outside of the modal, close it
 //creo que debemos corregir esta parte, pero no sé como
-window.onclick = function(event) {
-  if (event.target == loginModal) {
-    loginModal.style.display = "none";
-  }
-}
 
 //function that checks if the user is already log
 function observer () {
@@ -80,7 +54,6 @@ function observer () {
             
           // User is signed in.
           var displayName = user.displayName;
-          console.log(user.email);
           var email = user.email;
           console.log('*****************');
           console.log(user.emailVerified);
@@ -95,7 +68,16 @@ function observer () {
           // User is signed out.
           // ...
           console.log('No existe usuario activo');
-          
+          validateUser.innerHTML =  `
+    <div class ="container mt-5">
+    <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Bienvenido ${user.email}</h4>
+    <p>¡Ahora formas parte de nuestra comunidad!</p>
+    <hr>
+    <p class="mb-0"></p>
+  </div>
+  <button class="btn btn-danger">Cerrrar Sesión</button>
+  </div>`;
         }
       });
 }
@@ -115,12 +97,18 @@ function showValidation (user){
     //creates and shows a button for logout only if user is already login
     var user = user;
     const validateUser = document.getElementById("validateUser");
-    if(user.emailVerified){
-      validateUser.innerHTML = "";
-      validateUser.innerHTML =  `<h3>BIENVENIDO </h3>
-                    <p>Ya eres parte de nuestra comunidad</p>
-      <button id="logOut">CERRAR SESIÓN</button>`;
-        
+    if (user.emailVerified){
+    validateUser.innerHTML =  `
+    <div class ="container mt-5">
+    <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Bienvenido ${user.email}</h4>
+    <p>¡Ahora formas parte de nuestra comunidad!</p>
+    <hr>
+    <p class="mb-0"></p>
+    </div>
+    <button class="btn btn-danger">Cerrrar Sesión</button>
+    </div>`;
+
     document.getElementById("logOut").addEventListener('click', close);
     }
 
