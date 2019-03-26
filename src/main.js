@@ -71,35 +71,12 @@ function observer () {
           
           //esto de aquí es necesario?
           console.log('No existe usuario activo');
-<<<<<<< HEAD
-//           validateUser.innerHTML =  `
-//     <div class ="container mt-5">
-//     <div class="alert alert-success" role="alert">
-//     <h4 class="alert-heading">Bienvenido ${user.email}</h4>
-//     <p>¡Ahora formas parte de nuestra comunidad!</p>
-//     <hr>
-//     <p class="mb-0"></p>
-//   </div>
-//   <button class="btn btn-danger">Cerrrar Sesión</button>
-//   </div>`;
-//         }
-//       });
-// }
-=======
+
           validateUser.innerHTML =  `
-          <div class ="container mt-5">
-          <div class="alert alert-success" role="alert">
-          <h4 class="alert-heading">Bienvenido ${user.email}</h4>
-          <p>¡Ahora formas parte de nuestra comunidad!</p>
-          <hr>
-          <p class="mb-0"></p>
-        </div>
-        <button class="btn btn-danger">Cerrar Sesión</button>
-        </div>`;
+          `;
         }
       });
 }
->>>>>>> d46d6a799e0946d47547a510d18b3142f5d15030
 
 observer();
 
