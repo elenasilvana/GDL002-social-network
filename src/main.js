@@ -68,19 +68,19 @@ function observer () {
           // User is signed out.
           // ...
           console.log('No existe usuario activo');
-          validateUser.innerHTML =  `
-    <div class ="container mt-5">
-    <div class="alert alert-success" role="alert">
-    <h4 class="alert-heading">Bienvenido ${user.email}</h4>
-    <p>¡Ahora formas parte de nuestra comunidad!</p>
-    <hr>
-    <p class="mb-0"></p>
-  </div>
-  <button class="btn btn-danger">Cerrrar Sesión</button>
-  </div>`;
-        }
-      });
-}
+//           validateUser.innerHTML =  `
+//     <div class ="container mt-5">
+//     <div class="alert alert-success" role="alert">
+//     <h4 class="alert-heading">Bienvenido ${user.email}</h4>
+//     <p>¡Ahora formas parte de nuestra comunidad!</p>
+//     <hr>
+//     <p class="mb-0"></p>
+//   </div>
+//   <button class="btn btn-danger">Cerrrar Sesión</button>
+//   </div>`;
+//         }
+//       });
+// }
 
 observer();
 
