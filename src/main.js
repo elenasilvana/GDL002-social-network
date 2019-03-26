@@ -54,6 +54,9 @@ function observer () {
             
           // User is signed in.
           var displayName = user.displayName;
+          console.log('+++++++');
+          console.log(user.emailVerified);
+          console.log('+++++++');
           var email = user.email;
           var emailVerified = user.emailVerified;
           var photoURL = user.photoURL;
@@ -65,7 +68,16 @@ function observer () {
           // User is signed out.
           // ...
           console.log('No existe usuario activo');
-          
+          validateUser.innerHTML =  `
+    <div class ="container mt-5">
+    <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Bienvenido ${user.email}</h4>
+    <p>¡Ahora formas parte de nuestra comunidad!</p>
+    <hr>
+    <p class="mb-0"></p>
+  </div>
+  <button class="btn btn-danger">Cerrrar Sesión</button>
+  </div>`;
         }
       });
 }
@@ -85,12 +97,20 @@ function showValidation (user){
     //creates and shows a button for logout only if user is already login
     var user = user;
     const validateUser = document.getElementById("validateUser");
-    validateUser.innerHTML = "";
-    validateUser.innerHTML =  `<h3>BIENVENIDO </h3>
-    <p>Ya eres parte de nuestra comunidad</p>
-    <button id="logOut">CERRAR SESIÓN</button>`;
+    if (user.emailVerified){
+    validateUser.innerHTML =  `
+    <div class ="container mt-5">
+    <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Bienvenido ${user.email}</h4>
+    <p>¡Ahora formas parte de nuestra comunidad!</p>
+    <hr>
+    <p class="mb-0"></p>
+  </div>
+  <button class="btn btn-danger">Cerrrar Sesión</button>
+  </div>`;
 
     document.getElementById("logOut").addEventListener('click', close);
+    }
 }
 
 function verify(){
