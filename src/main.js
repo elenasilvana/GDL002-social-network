@@ -110,4 +110,4 @@ function showValidation (){
     <button id="logOut">CERRAR SESIÓN</button>`;
 
     document.getElementById("logOut").addEventListener('click', close);
-}
+} 
