@@ -3,13 +3,13 @@
 function signUp(){
     const mail = document.getElementById('mail').value;
     const password = document.getElementById('pwd').value;
-  firebase.auth().createUserWithEmailAndPassword(mail, password)
-  .then(function(){
-    verify();
-    })
-  .catch(function(error) {
-     
-        
+
+        firebase.auth().createUserWithEmailAndPassword(mail, password)
+        .then(function(){
+          verify();
+          })
+        .catch(function(error) {
+       
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -50,14 +50,14 @@ function observer () {
       //console.log(user);
         if (user) {
           console.log('Existe usuario activo');
-            showValidation(user);
+          showValidation(user);
             
           // User is signed in.
           var displayName = user.displayName;
-          console.log('+++++++');
-          console.log(user.emailVerified);
-          console.log('+++++++');
           var email = user.email;
+          console.log('*****************');
+          console.log(user.emailVerified);
+          console.log('*****************');
           var emailVerified = user.emailVerified;
           var photoURL = user.photoURL;
           var isAnonymous = user.isAnonymous;
@@ -67,7 +67,11 @@ function observer () {
         } else {
           // User is signed out.
           // ...
+          
+          
+          //esto de aquí es necesario?
           console.log('No existe usuario activo');
+<<<<<<< HEAD
 //           validateUser.innerHTML =  `
 //     <div class ="container mt-5">
 //     <div class="alert alert-success" role="alert">
@@ -81,6 +85,21 @@ function observer () {
 //         }
 //       });
 // }
+=======
+          validateUser.innerHTML =  `
+          <div class ="container mt-5">
+          <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">Bienvenido ${user.email}</h4>
+          <p>¡Ahora formas parte de nuestra comunidad!</p>
+          <hr>
+          <p class="mb-0"></p>
+        </div>
+        <button class="btn btn-danger">Cerrar Sesión</button>
+        </div>`;
+        }
+      });
+}
+>>>>>>> d46d6a799e0946d47547a510d18b3142f5d15030
 
 observer();
 
@@ -105,18 +124,19 @@ function showValidation (user){
     <p>¡Ahora formas parte de nuestra comunidad!</p>
     <hr>
     <p class="mb-0"></p>
-  </div>
-  <button class="btn btn-danger">Cerrrar Sesión</button>
-  </div>`;
+    </div>
+    <button class="btn btn-danger" id="logOut">Cerrar Sesión</button>
+    </div>`;
 
     document.getElementById("logOut").addEventListener('click', close);
     }
+
 }
 
 function verify(){
   //verificación de correo electrónico
   let user = firebase.auth().currentUser;
- 
+
   user.sendEmailVerification().then(function() {
     console.log('Enviando correo')
     // Email sent.
@@ -124,4 +144,32 @@ function verify(){
     console.log(error);
     // An error happened.
   });
- }
+}
+
+
+function signWithGoogle(){
+  var provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider).then(function(result) {
+  // This gives you a Google Access Token. You can use it to access the Google API.
+  var token = result.credential.accessToken;
+  // The signed-in user info.
+  var user = result.user;
+  // ...
+}).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  console.log(errorCode);
+  console.log(errorMessage);
+  // The email of the user's account used.
+  var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = error.credential;
+  // ...
+});
+
+
+}
+
+document.getElementById("loginGoogle").addEventListener('click', signWithGoogle);
+
