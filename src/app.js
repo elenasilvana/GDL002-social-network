@@ -11,6 +11,12 @@ function savePost(){
     let title= document.getElementById('title').value;
     let userPost= document.getElementById('userPost').value;
 
+    let checkboxValue = document.getElementById('info-checkbox').value;
+    console.log(checkboxValue);
+
+    //obtener el value del checkbox
+
+
     db.collection("post").add({
         title: title,
         userPost: userPost
