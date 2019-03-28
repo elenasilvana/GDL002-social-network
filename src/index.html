@@ -20,11 +20,13 @@
       storageBucket: "enraizados-16d5c.appspot.com",
       messagingSenderId: "931471292333"
     };
-    firebase.initializeApp(config);
+  
+
   </script>
   <!--FIRESTORE-->
   <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+  
   <!--POSTIMAGE-->
   <link href="https://postimg.cc/gallery/2k5cnehsg/">
 
@@ -76,7 +78,19 @@
     </div>
   </div>
   <button id="loginGoogle"class="btn btn-warning my-2 my-sm-0 btn-sm ml-2">Google</button>
+   
+  <!-- Bienvenida -->
+  <div id="validateUser">
 
+  </div>
+   <!-- postlist -->
+  <div class="container" >
+    <ul class="colapsible z-depth-0 posts">
+
+    </ul>
+
+  </div>  
+   <!-- POST NORMALES -->
   <div class="container">
     <h2>INFO O TRUEQUE:</h2>
     <input type="text" id="title" placeholder="titulo" class="form control mt-3"> <br> <br>
@@ -92,15 +106,7 @@
       </tbody>
     </table>
   </div>
-  <div class="publication-frame">
-    <!-- div donde debe ir el input y los botones que permitan al usuario ingresar su texto para publicar-->
-    
-  </div>
-  <section class="post-area">
-    <!-- Section donde deben ir los post publicados-->
 
-  <p>Area de prueba postear</p>  
-  </section>
   <main>
     
 
@@ -108,22 +114,8 @@
     </div>
     </div>
 
-    <!--
-                    <section>
-                        <h3>INGRESO DE USUARIOS</h3>
-                        <p>correo
-                            <input type="e-mail" name="correo" id="loginMail">
-                            </p>
-                            <p>contraseña <input type="password" name="contraseña" id="loginPwd"></p>
-                            
-                            <br>
-                            <button id="btn-login">INGRESAR</button>
-                           
-                    </section>
-                -->
-    <div id="validateUser">
-
-    </div>
+    
+   
 
   </main>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -139,6 +131,7 @@
   <script src="main.js"></script>
   <script src="app.js"></script>
   <script src="data.js"></script>
+  <script src="index.js"></script>
 
 </body>
 

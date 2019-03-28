@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "enraizados-16d5c"
+    "default": "enraizados-16d5c",
+    "enraizados": "enraizados-16d5c"
   }
 }
