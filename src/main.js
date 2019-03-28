@@ -36,7 +36,7 @@ function login(){
         console.log(errorCode);
         console.log(errorMessage);
       });
-  
+  window.location.hash = '#profile';
 }
 document.getElementById('btn-login').addEventListener('click', login);
 
@@ -67,9 +67,7 @@ function observer () {
         } else {
           // User is signed out.
           // ...
-          
-          
-          //esto de aquí es necesario?
+          //esto de aquí es necesario?, no fue necesario
           console.log('No existe usuario activo');
           validateUser.innerHTML =  `
           <div class ="container mt-5">
@@ -86,8 +84,6 @@ function observer () {
 }
 
 observer();
-
-
 function close(){
   //log out
     firebase.auth().signOut();

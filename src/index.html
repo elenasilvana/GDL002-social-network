@@ -9,13 +9,16 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
   <script src="data.js"></script>
-  
+ 
+  <div id="content"></div>
+
 </head>
 
 <body>
   <header>
     ENRAIZADOS
   </header>
+  <button id="loginGoogle">Google</button>
   <div class="container mt-3">
     <nav class="navbar navbar-dark bg-dark">
       <a class="navbar-brand">ENRAIZADOS</a>
@@ -23,8 +26,8 @@
         <input type="e-mail" placeholder="correo" id="loginMail" class="form-control form-control-sm mr-sm-2">
         <input type="password" placeholder="contraseña" id="loginPwd" class="form-control form-control-sm mr-sm-2">
         <button id="btn-login" class="btn btn-success my-2 my-sm-0 btn-sm">INGRESAR</button>
-        <button  class="btn btn-danger my-2 my-sm-0 btn-sm ml-2" data-toggle="modal"
-          data-target="#exampleModal">CREAR CUENTA</button>
+        <button class="btn btn-danger my-2 my-sm-0 btn-sm ml-2" data-toggle="modal" data-target="#exampleModal">CREAR
+          CUENTA</button>
       </div>
 
     </nav>
@@ -37,7 +40,7 @@
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">Registrar cuenta</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" id = "">&times;</span>
+            <span aria-hidden="true" id="">&times;</span>
           </button>
         </div>
         <div class="modal-body">
@@ -55,20 +58,16 @@
       </div>
     </div>
   </div>
-  <button id="loginGoogle">Google</button>
+  
+
   <main>
-    <p>Creamos este espacio para todos aquellos amantes de las plantas, sus bondades, sus frutos y sus diferentes usos.
+    <p>Creamos este espacio para todos aquellos amantes de las plantas,
+      sus bondades, sus frutos y sus diferentes usos.
     </p>
-
-
-    </div>
-    </div>
-
-    <div id="validateUser">
-
-    </div>
-
+   
+    <div id="validateUser"></div>
   </main>
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -78,12 +77,10 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-  <script src=""></script>
 
   <script src="main.js"></script>
   <script src="app.js"></script>
-  
-
+  <script src="index.js"></script>
 
 </body>
 
