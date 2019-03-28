@@ -64,15 +64,29 @@ function observer () {
           var uid = user.uid;
           var providerData = user.providerData;
           // ...
-        } else {
-          // User is signed out.
-          // ...
-          
-          
-          //esto de aquí es necesario?
+          db.collection('post').onSnapshot(querySnapshot => {
+            boxPost.innerHTML = '';
+            querySnapshot.forEach(doc => {
+              //console.log(`${doc.title} => ${doc.data().title}`);
+              boxPost.innerHTML += `
+                  <li>
+                  <tr>
+                    <th scope="col">${doc.data().title}</th>
+                  </tr>
+                  <tr>
+                    <td scope="row">${doc.data().userPost}</t>
+                    <td><button class="btn btn-danger" onclick="deleted('${doc.id}')">Eliminar</button> </td>
+                    <td><button class="btn btn-warning" onclick="edit('${doc.id}','${doc.data().title}',
+                    '${doc.data().userPost}')">Editar</button> </td>
+                  </tr>
+                </li>
+                  `;
+                });
+              });
+        } else {  
           console.log('No existe usuario activo');
-          validateUser.innerHTML =  `
-          `;
+          validateUser.innerHTML =  alert("aun no te has registrado");
+          boxPost.innerHTML = '';
         }
       });
 }
@@ -149,21 +163,3 @@ function signWithGoogle(){
 
 document.getElementById("loginGoogle").addEventListener('click', signWithGoogle);
 
-/* area para publicar posts */ 
-
-//input del textarea donde el usuario escribe su comentario
-const textareaInput = document.getElementsByClassName('userPost')[0];
-
-//botón de submit que toma los datos del textarea
-const submitPost = document.getElementsByClassName('post-button')[0]; 
-
-//el section donde aparecerán los comentarios publicados
-const userPostArea = document.getElementsByClassName('post-area')[0];
-
-submitPost.addEventListener('click', getUserPost);
-
-function getUserPost() {
-  const userTxt = textareaInput.value;
-  //hasta este momento la función solo obtiene el value del input text al presionar el botón submit
-  console.log(userTxt);
-}
