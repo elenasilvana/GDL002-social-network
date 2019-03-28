@@ -82,8 +82,15 @@
     <input type="text" id="title" placeholder="titulo" class="form control mt-3"> <br> <br>
     <textarea type="text" id="userPost" placeholder="que deseas compartir" class="form control"></textarea>
     <br>
-    <input type="checkbox" id="info" value="INFO">information
-    <input type="checkbox" id="swap" value="SWAP">trueque
+      <legend category="This field is mandatory">Requiered*</legend>
+      <input type="radio" required name="category" id="info-radio" value="INFO">information
+    <input type="radio" required name="category" id="swap-radio" value="SWAP">trueque
+    
+
+<!--
+    <input type="radio" id="info-radio" value="INFO">information
+    <input type="radio" id="swap-radio" value="SWAP">trueque
+-->
     <button type="button" class="btn btn-info m-5" id="btn-post">PUBLICAR</button>
     <table class="table my-3">
       
