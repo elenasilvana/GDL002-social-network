@@ -1,5 +1,3 @@
-
-
 function signUp(){
   const mail = document.getElementById('mail').value;
   const password = document.getElementById('pwd').value;
@@ -22,8 +20,6 @@ function signUp(){
 }
 document.getElementById('btn-signUp').addEventListener('click', signUp);
 
-
-
 function login(){
 const mailLogin = document.getElementById('loginMail').value;
   const passwordLogin = document.getElementById('loginPwd').value;
@@ -39,45 +35,10 @@ firebase.auth().signInWithEmailAndPassword(mailLogin, passwordLogin).catch(funct
 
 }
 document.getElementById('btn-login').addEventListener('click', login);
-
-
 // When the user clicks anywhere outside of the modal, close it
 //creo que debemos corregir esta parte, pero no sé como
-
 //function that checks if the user is already log
 function observer () {
-<<<<<<< HEAD
-  firebase.auth().onAuthStateChanged(function(user) {
-    //console.log(user);
-      if (user) {
-        console.log('Existe usuario activo');
-        showValidation(user);
-          
-        // User is signed in.
-        var displayName = user.displayName;
-        var email = user.email;
-        console.log('*****************');
-        console.log(user.emailVerified);
-        console.log('*****************');
-        var emailVerified = user.emailVerified;
-        var photoURL = user.photoURL;
-        var isAnonymous = user.isAnonymous;
-        var uid = user.uid;
-        var providerData = user.providerData;
-        // ...
-      } else {
-        // User is signed out.
-        // ...
-        
-        
-        //esto de aquí es necesario?
-        console.log('No existe usuario activo');
-
-        validateUser.innerHTML =  `
-        `;
-      }
-    });
-=======
     firebase.auth().onAuthStateChanged(function(user) {
       //console.log(user);
         if (user) {
@@ -121,7 +82,6 @@ function observer () {
           boxPost.innerHTML = '';
         }
       });
->>>>>>> b8d4a5ec064bba663d51ba178a25b9fff67c7d4b
 }
 
 observer();
@@ -196,24 +156,3 @@ var credential = error.credential;
 
 document.getElementById("loginGoogle").addEventListener('click', signWithGoogle);
 
-<<<<<<< HEAD
-/* area para publicar posts */ 
-
-//input del textarea donde el usuario escribe su comentario
-const textareaInput = document.getElementsByClassName('userPost')[0];
-
-//botón de submit que toma los datos del textarea
-const submitPost = document.getElementsByClassName('post-button')[0]; 
-
-//el section donde aparecerán los comentarios publicados
-const userPostArea = document.getElementsByClassName('post-area')[0];
-
-submitPost.addEventListener('click', getUserPost);
-
-function getUserPost() {
-const userTxt = textareaInput.value;
-//hasta este momento la función solo obtiene el value del input text al presionar el botón submit
-console.log(userTxt);
-}
-=======
->>>>>>> b8d4a5ec064bba663d51ba178a25b9fff67c7d4b
