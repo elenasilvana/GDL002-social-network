@@ -46,6 +46,7 @@ document.getElementById('btn-login').addEventListener('click', login);
 
 //function that checks if the user is already log
 function observer () {
+<<<<<<< HEAD
   firebase.auth().onAuthStateChanged(function(user) {
     //console.log(user);
       if (user) {
@@ -76,6 +77,51 @@ function observer () {
         `;
       }
     });
+=======
+    firebase.auth().onAuthStateChanged(function(user) {
+      //console.log(user);
+        if (user) {
+          console.log('Existe usuario activo');
+          showValidation(user);
+            
+          // User is signed in.
+          var displayName = user.displayName;
+          var email = user.email;
+          console.log('*****************');
+          console.log(user.emailVerified);
+          console.log('*****************');
+          var emailVerified = user.emailVerified;
+          var photoURL = user.photoURL;
+          var isAnonymous = user.isAnonymous;
+          var uid = user.uid;
+          var providerData = user.providerData;
+          // ...
+          db.collection('post').onSnapshot(querySnapshot => {
+            boxPost.innerHTML = '';
+            querySnapshot.forEach(doc => {
+              //console.log(`${doc.title} => ${doc.data().title}`);
+              boxPost.innerHTML += `
+                  <li>
+                  <tr>
+                    <th scope="col">${doc.data().title}</th>
+                  </tr>
+                  <tr>
+                    <td scope="row">${doc.data().userPost}</t>
+                    <td><button class="btn btn-danger" onclick="deleted('${doc.id}')">Eliminar</button> </td>
+                    <td><button class="btn btn-warning" onclick="edit('${doc.id}','${doc.data().title}',
+                    '${doc.data().userPost}')">Editar</button> </td>
+                  </tr>
+                </li>
+                  `;
+                });
+              });
+        } else {  
+          console.log('No existe usuario activo');
+          validateUser.innerHTML =  alert("aun no te has registrado");
+          boxPost.innerHTML = '';
+        }
+      });
+>>>>>>> b8d4a5ec064bba663d51ba178a25b9fff67c7d4b
 }
 
 observer();
@@ -150,6 +196,7 @@ var credential = error.credential;
 
 document.getElementById("loginGoogle").addEventListener('click', signWithGoogle);
 
+<<<<<<< HEAD
 /* area para publicar posts */ 
 
 //input del textarea donde el usuario escribe su comentario
@@ -168,3 +215,5 @@ const userTxt = textareaInput.value;
 //hasta este momento la función solo obtiene el value del input text al presionar el botón submit
 console.log(userTxt);
 }
+=======
+>>>>>>> b8d4a5ec064bba663d51ba178a25b9fff67c7d4b
