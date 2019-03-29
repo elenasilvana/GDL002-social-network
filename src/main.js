@@ -36,7 +36,7 @@ function login(){
         console.log(errorCode);
         console.log(errorMessage);
       });
-  window.location.hash = '#profile';
+  //window.location.hash = '#home';
 }
 document.getElementById('btn-login').addEventListener('click', login);
 

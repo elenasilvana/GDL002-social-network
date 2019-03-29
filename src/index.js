@@ -1,4 +1,4 @@
-let homePage = `
+/*let homePage = `
 <section class="home">
     Home page
     <div>
@@ -6,6 +6,7 @@ let homePage = `
     <a href="#profile">Perfil</a>
     </div>
     <img class="image" src="" />
+    <p>hola home</p>
 </section>
 `;
 
@@ -30,7 +31,10 @@ let routes = {
 let contentDiv = document.getElementById('content');
 
 window.addEventListener("hashchange", () => {
+    console.log('aqui está el eventlistener');
     contentDiv.innerHTML = routes[window.location.hash];
 });
 
-contentDiv.innerHTML = routes[window.location.hash];
+contentDiv.innerHTML = routes[window.location.hash];*/
+
+
