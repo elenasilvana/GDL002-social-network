@@ -1,8 +1,8 @@
-/*let homePage = `
-<section class="home">
-    Home page
+let infoTrueque = `
+<section class="timeline">
+    Información o Trueque
     <div>
-    <a href="#home">Home</a>
+    <a href="#timeline">Info o trueque</a>
     <a href="#profile">Perfil</a>
     </div>
     <img class="image" src="" />
@@ -14,7 +14,7 @@ let profilePage = `
 <section class="profile">
     Perfil
     <div>
-    <a href="#home">Home</a>
+    <a href="#timeline">Info ó trueque</a>
     <a href="#profile">Perfil</a>
     </div>
     <img class="image" src="" />
@@ -23,8 +23,8 @@ let profilePage = `
 `;
 
 let routes = {
-    '': homePage,
-    '#home': homePage,
+    '': timeline,
+    '#timeline': infoTrueque,
     '#profile': profilePage,
     };
 
@@ -35,6 +35,6 @@ window.addEventListener("hashchange", () => {
     contentDiv.innerHTML = routes[window.location.hash];
 });
 
-contentDiv.innerHTML = routes[window.location.hash];*/
+contentDiv.innerHTML = routes[window.location.hash];
 
 

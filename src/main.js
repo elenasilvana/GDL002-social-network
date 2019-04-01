@@ -1,5 +1,5 @@
-
-
+window.onload = () => {location.hash = '#open-modal'};
+/**Crear usuario con email y password */
 function signUp(){
     const mail = document.getElementById('mail').value;
     const password = document.getElementById('pwd').value;
@@ -37,6 +37,7 @@ function login(){
         console.log(errorMessage);
       });
   //window.location.hash = '#home';
+  (function(){'#modal-close'});
 }
 document.getElementById('btn-login').addEventListener('click', login);
 
@@ -51,7 +52,7 @@ function observer () {
         if (user) {
           console.log('Existe usuario activo');
           showValidation(user);
-            
+          location.hash = '#timeline' 
           // User is signed in.
           var displayName = user.displayName;
           var email = user.email;

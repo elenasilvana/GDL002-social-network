@@ -1,4 +1,14 @@
-/* Style the navigation bar links.  */ 
+body {
+  background: url(https://claudiagarfias.works/laboratoria/sharedimages/fern-918570_1920.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+p{
+  color: white;
+}
+/* Style the navigation bar links.   */
 #navbar a {
     font-family: 'Open Sans', sans-serif;
     font-size: 1.5em;
@@ -21,3 +31,78 @@
   #navbar a.active{
     border-color: gray;
   }
+
+  .modal-window {
+  position: fixed;
+  background-color: rgba(200, 200, 200, 0.75);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.modal-window:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-window>div {
+  width: 30%;
+  position: relative;
+  margin: 10% auto;
+  padding: 2rem;
+  background: white;
+  color: #444;
+}
+
+.modal-window header {
+  font-weight: bold;
+}
+.modal-window input {
+  border-radius: 10px;
+  background-image: none !important;
+  border: ;
+  margin: .40rem;
+  padding: .25rem;
+}
+
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+}
+
+.modal-close:hover {
+  color: #000;
+}
+
+.modal-window h1 {
+  font-size: 150%;
+  margin: 0 0 15px;
+  padding: .5rem;
+}
+
+.navbar {
+  background-color: red;
+  text-align: center;
+}
+
+.form-inline {
+  background-color:white;
+}
+
+.modal-h1 {
+  
+}  

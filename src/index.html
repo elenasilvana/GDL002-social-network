@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
   <meta charset="utf-8">
   <title>Social Network</title>
@@ -9,7 +9,7 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
   <script src="data.js"></script>
-
+<!--Div dinamico-->
   <div id="content"></div>
 
 </head>
@@ -18,23 +18,34 @@
   <header>
     ENRAIZADOS
   </header>
-  <!-- <div class="modal fade"> -->
-  <div class="container mt-3">
-    <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand">ENRAIZADOS</a>
-      <div class="form-inline">
-        <input type="e-mail" placeholder="correo" id="loginMail" class="form-control form-control-sm mr-sm-2">
-        <input type="password" placeholder="contraseña" id="loginPwd" class="form-control form-control-sm mr-sm-2">
-        <button id="btn-login" class="btn btn-success my-2 my-sm-0 btn-sm">INGRESAR</button>
-        <p>o</p>
-        <button id="loginGoogle">Continuar con Google</button>
-        <button  data-toggle="modal" data-target="#exampleModal">CREAR
-          CUENTA</button>
+    <!--Modal inicar sesión usuario existente-->
+    <a href="#open-modal"></a>
+
+    <div id="open-modal" class="modal-window">
+  
+      <div>
+  
+        <a href="#modal-close" title="Close" class="modal-close">close &times;</a>
+  
+        <div class="container mt-3">
+          <nav class="navbar navbar-dark bg-white">
+            <h1 class="modal-h1">Inicia sesión en Enraizados</h1>
+            <div class="form">
+              <input type="e-mail" placeholder="Correo" id="loginMail" class="form-control form-control-sm mr-sm-2">
+              <input type="password" placeholder="Contraseña" id="loginPwd" class="form-control form-control-sm mr-sm-2">
+              <button id="btn-login" class="btn btn-success my-2 my-sm-0 btn-sm col-md-10">Ingresar</button>
+              <button id="loginGoogle" class="btn btn-success my-2 my-sm-2 btn-sm col-md-10">Continuar con Google</button>
+              <div>ó</div>
+              <button class="btn btn-danger my-2 my-sm-0 btn-sm ml-2" data-toggle="modal"
+                data-target="#exampleModal">Crear mi cuenta</button>
+            </div>
+          </nav>
+        </div>
+  
       </div>
-    </nav>
-  </div>
-<!-- </div> -->
-  <!-- Modal -->
+  
+    </div>
+  <!--Modal Registrar nuevo usuario -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -80,14 +91,12 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <!-- Navigation links -->
-  <div id="navbar">
+  <!-- <div id="navbar">
     <a href="#login">Iniciar sesión</a>
     <a href="#home">Inicio</a>
     <a href="#profile">Mi perfil</a>
-  </div>
+  </div> -->
 
-  <!-- Dynamic content will be placed here by JavaScript. -->
-  <!-- <div id="content"></div> -->
 
   <script src="spa.js"></script>
   <script src="main.js"></script>
