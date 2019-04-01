@@ -1,5 +1,10 @@
 {
   "database": {
     "rules": "firebase use --add"
+    "rules": "database.rules.json"
+  },
+  "firestore": {
+    "rules": "quickstart-js-master",
+    "indexes": "quickstart-js-master"
   }
 }

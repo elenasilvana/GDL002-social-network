@@ -1,4 +1,5 @@
 
+
 (function () {
     // Initialize Firebase
     window.config = {
