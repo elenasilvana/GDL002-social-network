@@ -52,7 +52,7 @@ function observer () {
         if (user) {
           console.log('Existe usuario activo');
           showValidation(user);
-          location.hash = '#timeline' 
+          location.hash = '#timeline'; 
           // User is signed in.
           var displayName = user.displayName;
           var email = user.email;
@@ -65,7 +65,14 @@ function observer () {
           var uid = user.uid;
           var providerData = user.providerData;
           // ...
-        } else {
+        } 
+        else if (user.emailVerified === true){
+          location.hash = '#timeline';
+          }
+        // else if (user === null){
+        //   location.hash = '#open-modal';
+        // }
+          else {
           // User is signed out.
           // ...
           //esto de aquí es necesario?, no fue necesario
@@ -91,6 +98,7 @@ function close(){
     //clean the div that shows the button "Cerrar sesion"
     const validateUser = document.getElementById("validateUser");
     validateUser.innerHTML = "";
+    location.hash = '#open-modal';
 }
 
 function showValidation (user){
