@@ -1,4 +1,5 @@
 function signUp(){
+
   const mail = document.getElementById('mail').value;
   const password = document.getElementById('pwd').value;
 
@@ -40,22 +41,21 @@ document.getElementById('btn-login').addEventListener('click', login);
 //function that checks if the user is already log
 function observer () {
     firebase.auth().onAuthStateChanged(function(user) {
-      //console.log(user);
-        if (user) {
+      console.log(user);
+        if (user) { 
           console.log('Existe usuario activo');
           showValidation(user);
-            
           // User is signed in.
-          var displayName = user.displayName;
-          var email = user.email;
+          let displayName= user.displayName;
+          let email = user.email;
           console.log('*****************');
           console.log(user.emailVerified);
           console.log('*****************');
-          var emailVerified = user.emailVerified;
-          var photoURL = user.photoURL;
-          var isAnonymous = user.isAnonymous;
-          var uid = user.uid;
-          var providerData = user.providerData;
+          let emailVerified = user.emailVerified;
+          let photoURL = user.photoURL;
+          let isAnonymous = user.isAnonymous;
+          let uid = user.uid;
+          let providerData = user.providerData;
           // ...
           db.collection('post').onSnapshot(querySnapshot => {
             boxPost.innerHTML = '';
@@ -64,6 +64,7 @@ function observer () {
               boxPost.innerHTML += `
                   <li>
                   <tr>
+                    <th scope="col">${doc.data().displayName}</th>
                     <th scope="col">${doc.data().title}</th>
                   </tr>
                   <tr>
@@ -117,6 +118,18 @@ function showValidation (user){
 }
 
 function verify(){
+
+  //verificación de correo electrónico
+  let user = firebase.auth().currentUser;
+
+  user.sendEmailVerification().then(function() {
+    alert('Se ha enviado un correo para verificar que eres tu')
+    // Email sent.
+  }).catch(function(error) {
+    console.log(error);
+    // An error happened.
+  });
+
 //verificación de correo electrónico
 let user = firebase.auth().currentUser;
 

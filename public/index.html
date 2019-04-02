@@ -34,13 +34,12 @@
 
 <body>
   <header>
-
-
+    
+    
   </header>
-<!-- Formulario de Ingreso usuario registrado -->
   <div class="container mt-3">
     <nav class="navbar navbar-dark bg-dark">
-      <img id="logoEnraizados" src="https://i.postimg.cc/rFL8tp3H/En-Raizados.png">
+      <img id="logoEnraizados" src="https://i.postimg.cc/rFL8tp3H/En-Raizados.png" >
       <div class="form-inline">
         <input type="e-mail" placeholder="correo" id="loginMail" class="form-control form-control-sm mr-sm-2">
         <input type="password" placeholder="contraseña" id="loginPwd" class="form-control form-control-sm mr-sm-2">
@@ -51,14 +50,32 @@
     </nav>
   </div>
   <p>Creamos este espacio para todos aquellos amantes de las plantas, sus bondades, sus frutos y sus diferentes usos.
-
   </p>    
-    
- <!-- Modal  registrar cuenta-->
-
+    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#account-details">Account</a>
+  
+  <!-- Modal para ver datos de perfil -->
+<div class="modal fade" id="account-details" tabindex="-1" role="dialog" aria-labelledby="account-detailsLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="account-detailsLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal para registrarse -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
     aria-hidden="true">
-    
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -68,10 +85,9 @@
           </button>
         </div>
         <div class="modal-body">
-         
-          <input type="name"placeholder="nombre" id="displayName" class="form-control mt-2">
-          <div class="mt-2">
 
+          <input type="name"placeholder="nombre" id="name" class="form-control mt-2">
+          <div class="mt-2">
 
             </div>
           <input type="e-mail" placeholder="correo" id="mail" class="form-control">
@@ -82,7 +98,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger " data-dismiss="modal">Cerrar</button>
-          <button onclick="signUp()" type="button" class="btn btn-primary">Registrar</button>
+          <button onclick="signUp()" type="button" class="btn btn-primary" >Registrar</button>
         </div>
       </div>
     </div>
@@ -94,8 +110,13 @@
   <div id="validateUser">
 
   </div>
-  
- 
+  <!-- ACCOUNT MODAL -->
+  <div id="modal-account" class="modal">
+      <div class="modal-content center-align">
+        <h4>Account details</h4><br />
+        <div class="account-details"></div>
+      </div>
+    </div>
 
    <!-- POST NORMALES -->
   <div class="container">
@@ -103,24 +124,21 @@
     <input type="text" id="title" placeholder="titulo" class="form control mt-3"> <br> <br>
     <textarea type="text" id="userPost" placeholder="que deseas compartir" class="form control"></textarea>
     <br>
-      <legend category="This field is mandatory">Requiered*</legend>
-      <input type="radio" required name="category" id="info-radio" value="INFO">information
-    <input type="radio" required name="category" id="swap-radio" value="SWAP">trueque
-    
-
-<!--
-    <input type="radio" id="info-radio" value="INFO">information
-    <input type="radio" id="swap-radio" value="SWAP">trueque
--->
+    <input type="checkbox" id="info" value="INFO">information
+    <input type="checkbox" id="swap" value="SWAP">trueque
     <button type="button" class="btn btn-info m-5" id="btn-post">PUBLICAR</button>
     <table class="table my-3">
-
+      
       <tbody id="boxPost">
-
+         
       </tbody>
     </table>
   </div>
+
   <main>
+    
+
+
     </div>
     </div>
 
