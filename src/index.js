@@ -1,4 +1,4 @@
-let infoTrueque = `
+let timeline = `
 <section class="timeline">
     Información o Trueque
     <div>
@@ -7,6 +7,18 @@ let infoTrueque = `
     </div>
     <img class="image" src="" />
     <p>hola home</p>
+</section>
+`;
+
+let infoTrueque = `
+<section class="profile">
+    Perfil
+    <div>
+    <a href="#timeline">Info ó trueque</a>
+    <a href="#profile">Perfil</a>
+    </div>
+    <img class="image" src="" />
+    <p>Es mi perfil</p>
 </section>
 `;
 

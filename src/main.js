@@ -1,3 +1,7 @@
+window.onload = () => {
+  location.hash = '#open-modal'
+}
+
 function signUp(){
 
   const mail = document.getElementById('mail').value;
@@ -15,17 +19,18 @@ function signUp(){
       // ...
       console.log(errorCode);
       console.log(errorMessage);
-      
-      
+  
     });
 }
+
 document.getElementById('btn-signUp').addEventListener('click', signUp);
 
 function login(){
 const mailLogin = document.getElementById('loginMail').value;
   const passwordLogin = document.getElementById('loginPwd').value;
   observer(mail);
-firebase.auth().signInWithEmailAndPassword(mailLogin, passwordLogin).catch(function(error) {
+firebase.auth().signInWithEmailAndPassword(mailLogin, passwordLogin)
+.catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -33,18 +38,21 @@ firebase.auth().signInWithEmailAndPassword(mailLogin, passwordLogin).catch(funct
       console.log(errorCode);
       console.log(errorMessage);
     });
-
+    (function(){
+      '#modal-close'
+    });
 }
+
 document.getElementById('btn-login').addEventListener('click', login);
 // When the user clicks anywhere outside of the modal, close it
-//creo que debemos corregir esta parte, pero no sé como
 //function that checks if the user is already log
 function observer () {
     firebase.auth().onAuthStateChanged(function(user) {
-      console.log(user);
+      
         if (user) { 
           console.log('Existe usuario activo');
           showValidation(user);
+          location.hash = '#timeline';
           // User is signed in.
           let displayName= user.displayName;
           let email = user.email;
@@ -64,7 +72,6 @@ function observer () {
               boxPost.innerHTML += `
                   <li>
                   <tr>
-                    <th scope="col">${doc.data().displayName}</th>
                     <th scope="col">${doc.data().title}</th>
                   </tr>
                   <tr>
@@ -77,7 +84,10 @@ function observer () {
                   `;
                 });
               });
-        } else {  
+        } else if (user.emailVerified === true){
+            location.has = '#timeline';
+        } 
+        else {  
           console.log('No existe usuario activo');
           validateUser.innerHTML =  alert("aun no te has registrado");
           boxPost.innerHTML = '';
@@ -128,44 +138,28 @@ function verify(){
   }).catch(function(error) {
     console.log(error);
     // An error happened.
-  });
-
-//verificación de correo electrónico
-let user = firebase.auth().currentUser;
-
-user.sendEmailVerification().then(function() {
-  console.log('Enviando correo')
-  // Email sent.
-}).catch(function(error) {
-  console.log(error);
-  // An error happened.
-});
+  })
 }
-
 
 function signWithGoogle(){
-var provider = new firebase.auth.GoogleAuthProvider();
-firebase.auth().signInWithPopup(provider).then(function(result) {
-// This gives you a Google Access Token. You can use it to access the Google API.
-var token = result.credential.accessToken;
-// The signed-in user info.
-var user = result.user;
-// ...
-}).catch(function(error) {
-// Handle Errors here.
-var errorCode = error.code;
-var errorMessage = error.message;
-console.log(errorCode);
-console.log(errorMessage);
-// The email of the user's account used.
-var email = error.email;
-// The firebase.auth.AuthCredential type that was used.
-var credential = error.credential;
-// ...
-});
-
-
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // ...
+    }).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorCode);
+    console.log(errorMessage);
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
 }
-
 document.getElementById("loginGoogle").addEventListener('click', signWithGoogle);
-
