@@ -51,12 +51,31 @@
   </div>
   <p>Creamos este espacio para todos aquellos amantes de las plantas, sus bondades, sus frutos y sus diferentes usos.
   </p>    
-    
- 
+    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#account-details">Account</a>
+  
+  <!-- Modal para ver datos de perfil -->
+<div class="modal fade" id="account-details" tabindex="-1" role="dialog" aria-labelledby="account-detailsLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="account-detailsLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Modal para registrarse -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
     aria-hidden="true">
-    
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -66,10 +85,9 @@
           </button>
         </div>
         <div class="modal-body">
-         
-          <input type="name"placeholder="nombre" id="displayName" class="form-control mt-2">
-          <div class="mt-2">
 
+          <input type="name"placeholder="nombre" id="name" class="form-control mt-2">
+          <div class="mt-2">
 
             </div>
           <input type="e-mail" placeholder="correo" id="mail" class="form-control">
@@ -92,8 +110,13 @@
   <div id="validateUser">
 
   </div>
-  
- 
+  <!-- ACCOUNT MODAL -->
+  <div id="modal-account" class="modal">
+      <div class="modal-content center-align">
+        <h4>Account details</h4><br />
+        <div class="account-details"></div>
+      </div>
+    </div>
 
    <!-- POST NORMALES -->
   <div class="container">

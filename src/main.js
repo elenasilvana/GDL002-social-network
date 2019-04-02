@@ -1,24 +1,20 @@
 
 
 function signUp(){
+    
     const mail = document.getElementById('mail').value;
     const password = document.getElementById('pwd').value;
 
         firebase.auth().createUserWithEmailAndPassword(mail, password)
-        .then(function(){
-          verify();
+        .then(cred =>{
+          return db.collection('users').doc(cred.user.uid).set({
+            bio:signupForm['displayName'].value
+          });
           })
-        .catch(function(error) {
-       
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-        console.log(errorCode);
-        console.log(errorMessage);
-        
-        
-      });
+          .then(() =>{
+            verify();
+          });
+     
 }
 document.getElementById('btn-signUp').addEventListener('click', signUp);
 
@@ -47,22 +43,21 @@ document.getElementById('btn-login').addEventListener('click', login);
 //function that checks if the user is already log
 function observer () {
     firebase.auth().onAuthStateChanged(function(user) {
-      //console.log(user);
-        if (user) {
+      console.log(user);
+        if (user) { 
           console.log('Existe usuario activo');
           showValidation(user);
-            
           // User is signed in.
-          var displayName = user.displayName;
-          var email = user.email;
+          let displayName= user.displayName;
+          let email = user.email;
           console.log('*****************');
           console.log(user.emailVerified);
           console.log('*****************');
-          var emailVerified = user.emailVerified;
-          var photoURL = user.photoURL;
-          var isAnonymous = user.isAnonymous;
-          var uid = user.uid;
-          var providerData = user.providerData;
+          let emailVerified = user.emailVerified;
+          let photoURL = user.photoURL;
+          let isAnonymous = user.isAnonymous;
+          let uid = user.uid;
+          let providerData = user.providerData;
           // ...
           db.collection('post').onSnapshot(querySnapshot => {
             boxPost.innerHTML = '';
@@ -71,6 +66,7 @@ function observer () {
               boxPost.innerHTML += `
                   <li>
                   <tr>
+                    <th scope="col">${doc.data().displayName}</th>
                     <th scope="col">${doc.data().title}</th>
                   </tr>
                   <tr>
@@ -128,7 +124,7 @@ function verify(){
   let user = firebase.auth().currentUser;
 
   user.sendEmailVerification().then(function() {
-    console.log('Enviando correo')
+    alert('Se ha enviado un correo para verificar que eres tu')
     // Email sent.
   }).catch(function(error) {
     console.log(error);
