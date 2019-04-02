@@ -11,6 +11,17 @@ function savePost() {
   let title = document.getElementById('title').value;
   let userPost = document.getElementById('userPost').value;
 
+
+    let info = document.getElementById('info-radio').checked;
+    let swap = document.getElementById('swap-radio').checked;
+
+    if((info || swap) === true){
+    	//todavía no hacemos nada con esto pero ya revisa que haya uno en true
+    	console.log('hola')
+    }
+   
+    //obtener el value del checkbox
+
   db.collection('post')
     .add({
       title: title,
