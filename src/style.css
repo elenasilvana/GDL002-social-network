@@ -1,3 +1,5 @@
+/*
+
 body {
   background: url(https://claudiagarfias.works/laboratoria/sharedimages/fern-918570_1920.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -8,7 +10,7 @@ body {
 p{
   color: white;
 }
-/* Style the navigation bar links.   */
+ Style the navigation bar links. 
 #navbar a {
     font-family: 'Open Sans', sans-serif;
     font-size: 1.5em;
@@ -22,12 +24,12 @@ p{
     border-radius: 20px;
   }
   
-  /* Give the user an affordance that each link is clickable. */
+ Give the user an affordance that each link is clickable.
   #navbar a:hover {
     border-color: black;
   }
   
-  /* Style the active page link. */
+   Style the active page link. 
   #navbar a.active{
     border-color: gray;
   }
@@ -106,5 +108,7 @@ p{
 .modal-h1 {
   
 }  
+
+*/
 
 /* porfavor guardate */
