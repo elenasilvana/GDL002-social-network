@@ -1,20 +1,25 @@
 
 
 function signUp(){
-    
-    const mail = document.getElementById('mail').value;
-    const password = document.getElementById('pwd').value;
 
-        firebase.auth().createUserWithEmailAndPassword(mail, password)
-        .then(cred =>{
-          return db.collection('users').doc(cred.user.uid).set({
-            bio:signupForm['displayName'].value
-          });
-          })
-          .then(() =>{
-            verify();
-          });
+  const mail = document.getElementById('mail').value;
+  const password = document.getElementById('pwd').value;
+
+      firebase.auth().createUserWithEmailAndPassword(mail, password)
+      .then(function(){
+        verify();
+        })
+      .catch(function(error) {
      
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+      console.log(errorCode);
+      console.log(errorMessage);
+      
+      
+    });
 }
 document.getElementById('btn-signUp').addEventListener('click', signUp);
 
@@ -66,7 +71,6 @@ function observer () {
               boxPost.innerHTML += `
                   <li>
                   <tr>
-                    <th scope="col">${doc.data().displayName}</th>
                     <th scope="col">${doc.data().title}</th>
                   </tr>
                   <tr>
