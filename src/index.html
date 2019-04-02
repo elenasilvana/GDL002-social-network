@@ -10,34 +10,53 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
-  <script src="data.js"></script>
+
   <!--FIRESTORE-->
   <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
   
   <!--POSTIMAGE-->
   <link href="https://postimg.cc/gallery/2k5cnehsg/">
-
+  <script src="data.js"></script>
+ 
 </head>
 
 <body>
+   <!--div dinamico-->
+   <div id = "content"></div>
+
   <header>
 
 
   </header>
-<!-- Formulario de Ingreso usuario registrado -->
-  <div class="container mt-3">
-    <nav class="navbar navbar-dark bg-dark">
-      <img id="logoEnraizados" src="https://i.postimg.cc/rFL8tp3H/En-Raizados.png">
-      <div class="form-inline">
-        <input type="e-mail" placeholder="correo" id="loginMail" class="form-control form-control-sm mr-sm-2">
-        <input type="password" placeholder="contraseña" id="loginPwd" class="form-control form-control-sm mr-sm-2">
-        <button id="btn-login" class="btn btn-success my-2 my-sm-0 btn-sm">INGRESAR</button>
-        <button id="btn-signUp" class="btn btn-danger my-2 my-sm-0 btn-sm ml-2" data-toggle="modal"
-          data-target="#exampleModal">CREAR CUENTA</button>
-      </div>
-    </nav>
-  </div>
+
+ <!--Modal iniciar sesión usuario existente-->
+ <a href="#open-modal"></a>
+
+ <div id="open-modal" class="modal-window">
+
+   <div>
+
+     <a href="#modal-close" title="Close" class="modal-close">close &times;</a>
+
+     <div class="container mt-3">
+       <nav class="navbar navbar-dark bg-white">
+         <h1 class="modal-h1">Inicia sesión en Enraizados</h1>
+         <div class="form">
+           <input type="e-mail" placeholder="Correo" id="loginMail" class="form-control form-control-sm mr-sm-2">
+           <input type="password" placeholder="Contraseña" id="loginPwd" class="form-control form-control-sm mr-sm-2">
+           <button id="btn-login" class="btn btn-success my-2 my-sm-0 btn-sm col-md-10">Ingresar</button>
+           <button id="loginGoogle" class="btn btn-success my-2 my-sm-2 btn-sm col-md-10">Continuar con Google</button>
+           <div>ó</div>
+           <button class="btn btn-danger my-2 my-sm-0 btn-sm ml-2" data-toggle="modal"
+             data-target="#exampleModal">Crear mi cuenta</button>
+         </div>
+       </nav>
+     </div>
+
+   </div>
+
+ </div>
   <p>Creamos este espacio para todos aquellos amantes de las plantas, sus bondades, sus frutos y sus diferentes usos.
 
   </p>    
@@ -70,13 +89,11 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger " data-dismiss="modal">Cerrar</button>
-          <button onclick="signUp()" type="button" class="btn btn-primary">Registrar</button>
+          <button type="button" class="btn btn-primary" id = "btn-signUp">Registrar</button>
         </div>
       </div>
     </div>
   </div>
-
-  <button id="loginGoogle"class="btn btn-warning my-2 my-sm-0 btn-sm ml-2">Google</button>
    
   <!-- Bienvenida -->
   <div id="validateUser">
@@ -128,7 +145,7 @@
 
   <script src="main.js"></script>
   <script src="app.js"></script>
- 
+  <script src="index.js"></script>
  
 
 </body>

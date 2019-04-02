@@ -1,8 +1,3 @@
-firebase.initializeApp({
-  apiKey: 'AIzaSyAxb4EmMmVWcrftptR4Xvx_baYsBqTwnZE',
-  authDomain: 'enraizados-16d5c.firebaseapp.com',
-  projectId: 'enraizados-16d5c',
-});
 
 // Initialize Cloud Firestore through Firebase
 var db = firebase.firestore();
