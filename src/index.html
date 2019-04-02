@@ -1,58 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
   <meta charset="utf-8">
   <title>Social Network</title>
   <link rel="stylesheet" href="style.css" />
-  <!--Bootstrap-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-  <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyAxb4EmMmVWcrftptR4Xvx_baYsBqTwnZE",
-      authDomain: "enraizados-16d5c.firebaseapp.com",
-      databaseURL: "https://enraizados-16d5c.firebaseio.com",
-      projectId: "enraizados-16d5c",
-      storageBucket: "enraizados-16d5c.appspot.com",
-      messagingSenderId: "931471292333"
-    };
-  
-
-  </script>
-  <!--FIRESTORE-->
-  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
-  
-  <!--POSTIMAGE-->
-  <link href="https://postimg.cc/gallery/2k5cnehsg/">
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+  <script src="data.js"></script>
+<!--Div dinamico-->
+  <div id="content"></div>
 
 </head>
 
 <body>
   <header>
-
-
+    ENRAIZADOS
   </header>
-<!-- Formulario de Ingreso usuario registrado -->
-  <div class="container mt-3">
-    <nav class="navbar navbar-dark bg-dark">
-      <img id="logoEnraizados" src="https://i.postimg.cc/rFL8tp3H/En-Raizados.png">
-      <div class="form-inline">
-        <input type="e-mail" placeholder="correo" id="loginMail" class="form-control form-control-sm mr-sm-2">
-        <input type="password" placeholder="contraseña" id="loginPwd" class="form-control form-control-sm mr-sm-2">
-        <button id="btn-login" class="btn btn-success my-2 my-sm-0 btn-sm">INGRESAR</button>
-        <button id="btn-signUp" class="btn btn-danger my-2 my-sm-0 btn-sm ml-2" data-toggle="modal"
-          data-target="#exampleModal">CREAR CUENTA</button>
+    <!--Modal inicar sesión usuario existente-->
+    <a href="#open-modal"></a>
+
+    <div id="open-modal" class="modal-window">
+  
+      <div>
+  
+        <a href="#modal-close" title="Close" class="modal-close">close &times;</a>
+  
+        <div class="container mt-3">
+          <nav class="navbar navbar-dark bg-white">
+            <h1 class="modal-h1">Inicia sesión en Enraizados</h1>
+            <div class="form">
+              <input type="e-mail" placeholder="Correo" id="loginMail" class="form-control form-control-sm mr-sm-2">
+              <input type="password" placeholder="Contraseña" id="loginPwd" class="form-control form-control-sm mr-sm-2">
+              <button id="btn-login" class="btn btn-success my-2 my-sm-0 btn-sm col-md-10">Ingresar</button>
+              <button id="loginGoogle" class="btn btn-success my-2 my-sm-2 btn-sm col-md-10">Continuar con Google</button>
+              <div>ó</div>
+              <button class="btn btn-danger my-2 my-sm-0 btn-sm ml-2" data-toggle="modal"
+                data-target="#exampleModal">Crear mi cuenta</button>
+            </div>
+          </nav>
+        </div>
+  
       </div>
-    </nav>
-  </div>
-  <p>Creamos este espacio para todos aquellos amantes de las plantas, sus bondades, sus frutos y sus diferentes usos.
-  </p>
-  <!-- Modal  registrar cuenta-->
+  
+    </div>
+  <!--Modal Registrar nuevo usuario -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -60,7 +53,7 @@
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">Registrar cuenta</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true" id="">&times;</span>
           </button>
         </div>
         <div class="modal-body">
@@ -72,49 +65,14 @@
           <input type="password" name="contraseña" placeholder="contraseña" id="pwd" class="form-control">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger " data-dismiss="modal">Cerrar</button>
-          <button onclick="signUp()" type="button" class="btn btn-primary">Registrar</button>
+          <!-- <button type="button" class="btn btn-danger " data-dismiss="modal">Cerrar</button> -->
+          <button id="btn-signUp" type="button" class="btn btn-primary" data-dismiss="modal">Registrar</button>
         </div>
       </div>
     </div>
   </div>
-  <button id="loginGoogle"class="btn btn-warning my-2 my-sm-0 btn-sm ml-2">Google</button>
-   
-  <!-- Bienvenida -->
-  <div id="validateUser">
-
-  </div>
-   <!-- postlist -->
-  <div class="container" >
-    <ul class="colapsible z-depth-0 posts">
-
-    </ul>
-
-  </div>  
-   <!-- POST NORMALES -->
-  <div class="container">
-    <h2>INFO O TRUEQUE:</h2>
-    <input type="text" id="title" placeholder="titulo" class="form control mt-3"> <br> <br>
-    <textarea type="text" id="userPost" placeholder="que deseas compartir" class="form control"></textarea>
-    <br>
-    <input type="checkbox" id="info" value="INFO">information
-    <input type="checkbox" id="swap" value="SWAP">trueque
-    <button type="button" class="btn btn-info m-5" id="btn-post">PUBLICAR</button>
-    <table class="table my-3">
-
-      <tbody id="boxPost">
-
-      </tbody>
-    </table>
-  </div>
-  <main>
-    </div>
-    </div>
-
-    
-   
-
   </main>
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -124,10 +82,17 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+  <!-- Navigation links -->
+  <!-- <div id="navbar">
+    <a href="#login">Iniciar sesión</a>
+    <a href="#home">Inicio</a>
+    <a href="#profile">Mi perfil</a>
+  </div> -->
 
+
+  <script src="spa.js"></script>
   <script src="main.js"></script>
   <script src="app.js"></script>
-  <script src="data.js"></script>
   <script src="index.js"></script>
 
 </body>
