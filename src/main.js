@@ -1,3 +1,4 @@
+
 function signUp(){
 
   const mail = document.getElementById('mail').value;
@@ -64,7 +65,6 @@ function observer () {
               boxPost.innerHTML += `
                   <li>
                   <tr>
-                    <th scope="col">${doc.data().displayName}</th>
                     <th scope="col">${doc.data().title}</th>
                   </tr>
                   <tr>
