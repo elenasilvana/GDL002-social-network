@@ -22,12 +22,13 @@
 
 <body>
   <header>
-    
-    
+
+
   </header>
+<!-- Formulario de Ingreso usuario registrado -->
   <div class="container mt-3">
     <nav class="navbar navbar-dark bg-dark">
-      <img id="logoEnraizados" src="https://i.postimg.cc/rFL8tp3H/En-Raizados.png" >
+      <img id="logoEnraizados" src="https://i.postimg.cc/rFL8tp3H/En-Raizados.png">
       <div class="form-inline">
         <input type="e-mail" placeholder="correo" id="loginMail" class="form-control form-control-sm mr-sm-2">
         <input type="password" placeholder="contraseña" id="loginPwd" class="form-control form-control-sm mr-sm-2">
@@ -38,10 +39,11 @@
     </nav>
   </div>
   <p>Creamos este espacio para todos aquellos amantes de las plantas, sus bondades, sus frutos y sus diferentes usos.
+
   </p>    
     
- 
-  <!-- Modal para registrarse -->
+ <!-- Modal  registrar cuenta-->
+
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
     aria-hidden="true">
     
@@ -68,7 +70,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger " data-dismiss="modal">Cerrar</button>
-          <button onclick="signUp()" type="button" class="btn btn-primary" >Registrar</button>
+          <button onclick="signUp()" type="button" class="btn btn-primary">Registrar</button>
         </div>
       </div>
     </div>
@@ -89,21 +91,24 @@
     <input type="text" id="title" placeholder="titulo" class="form control mt-3"> <br> <br>
     <textarea type="text" id="userPost" placeholder="que deseas compartir" class="form control"></textarea>
     <br>
-    <input type="checkbox" id="info" value="INFO">information
-    <input type="checkbox" id="swap" value="SWAP">trueque
+      <legend category="This field is mandatory">Requiered*</legend>
+      <input type="radio" required name="category" id="info-radio" value="INFO">information
+    <input type="radio" required name="category" id="swap-radio" value="SWAP">trueque
+    
+
+<!--
+    <input type="radio" id="info-radio" value="INFO">information
+    <input type="radio" id="swap-radio" value="SWAP">trueque
+-->
     <button type="button" class="btn btn-info m-5" id="btn-post">PUBLICAR</button>
     <table class="table my-3">
-      
+
       <tbody id="boxPost">
-         
+
       </tbody>
     </table>
   </div>
-
   <main>
-    
-
-
     </div>
     </div>
 
