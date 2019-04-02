@@ -12,7 +12,6 @@ let timeline = `
 
 let infoTrueque = `
 <section class="profile">
-    Perfil
     <div>
     <a href="#timeline">Info ó trueque</a>
     <a href="#profile">Perfil</a>
