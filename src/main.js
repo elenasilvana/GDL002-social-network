@@ -104,6 +104,7 @@ function close(){
   //clean the div that shows the button "Cerrar sesion"
   const validateUser = document.getElementById("validateUser");
   validateUser.innerHTML = "";
+  location.hash = '#open-modal';
 }
 
 function showValidation (user){
