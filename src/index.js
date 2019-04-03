@@ -1,26 +1,35 @@
-let timeline = `
-<section class="timeline">
-    Información o Trueque
+let homePage = `
+<section  class = "home">
+    Inicio
     <div>
-    <a href="#timeline">Info o trueque</a>
+    <a href="#home">Inicio</a>
+    <a href="#timeline">Info o Trueque</a>
     <a href="#profile">Perfil</a>
     </div>
     <img class="image" src="" />
     <p>hola home</p>
-</section>
-`;
-
-let infoTrueque = `
-<section class="infoTrueque">
+`
+let timeline = `
+<section class="timeline">
     Información o Trueque
     <div>
-    <a href="#timeline">Info ó trueque</a>
+    <a href="#home">Inicio</a>
+    <a href="#timeline">Info o trueque</a>
     <a href="#profile">Perfil</a>
     </div>
     <img class="image" src="" />
-    <p>Es mi perfil</p>
+    <p>hola timeline</p>
+    <div class="container">
+    <h2>INFO O TRUEQUE:</h2>
+    <input type="text" id="title" placeholder="titulo" class="form control mt-3"> <br> <br>
+    <textarea type="text" id="userPost" placeholder="que deseas compartir" class="form control"></textarea>
+    <br>
+      <legend category="This field is mandatory">Requiered*</legend>
+      <input type="radio" required name="category" id="info-radio" value="INFO">information
+    <input type="radio" required name="category" id="swap-radio" value="SWAP">trueque
 </section>
 `;
+
 
 let profilePage = `
 <section class="profile">
@@ -35,8 +44,9 @@ let profilePage = `
 `;
 
 let routes = {
-    '': timeline,
-    '#timeline': infoTrueque,
+    '': homePage,
+    '#home': homePage,
+    '#timeline':timeline,
     '#profile': profilePage,
     };
 

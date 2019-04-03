@@ -1,7 +1,7 @@
 window.onload = () => {
-  location.hash = '#open-modal'
+  location.hash = '#home'
 }
-
+/**Función para registrarse en sitio con correo y pwd */
 function signUp(){
 
   const mail = document.getElementById('mail').value;
@@ -25,6 +25,7 @@ function signUp(){
 
 document.getElementById('btn-signUp').addEventListener('click', signUp);
 
+/**Función para iniciar Sesión una vez registrado */
 function login(){
 const mailLogin = document.getElementById('loginMail').value;
   const passwordLogin = document.getElementById('loginPwd').value;
@@ -37,6 +38,7 @@ firebase.auth().signInWithEmailAndPassword(mailLogin, passwordLogin)
       // ...
       console.log(errorCode);
       console.log(errorMessage);
+      alert('OJO verificar datos');
     });
     (function(){
       '#modal-close'
@@ -46,6 +48,8 @@ firebase.auth().signInWithEmailAndPassword(mailLogin, passwordLogin)
 document.getElementById('btn-login').addEventListener('click', login);
 // When the user clicks anywhere outside of the modal, close it
 //function that checks if the user is already log
+
+/**Función del Observador, verifica correo enviado, que exista el usuario, permite que el usuario visualice post en timeline */
 function observer () {
     firebase.auth().onAuthStateChanged(function(user) {
       
@@ -64,7 +68,7 @@ function observer () {
           let isAnonymous = user.isAnonymous;
           let uid = user.uid;
           let providerData = user.providerData;
-          // ...
+          // Muestra Post una vez dentro.
           db.collection('post').onSnapshot(querySnapshot => {
             boxPost.innerHTML = '';
             querySnapshot.forEach(doc => {
@@ -107,6 +111,7 @@ function close(){
   location.hash = '#open-modal';
 }
 
+/**Función Validación de cta en email de usuario*/
 function showValidation (user){
   //creates and shows a button for logout only if user is already login
   var user = user;

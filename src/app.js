@@ -1,6 +1,6 @@
 
 // Initialize Cloud Firestore through Firebase
-var db = firebase.firestore();
+let db = firebase.firestore();
 //agregar documentos
 function savePost() {
   let title = document.getElementById('title').value;
