@@ -32,10 +32,10 @@ export function savePost() {
 }
 
 
-if(window.location.hash === '#timeline') {
-document.getElementById('btn-post').addEventListener('click', savePost);
+//if(window.location.hash === '#timeline') {
+//document.getElementById('btn-post').addEventListener('click', savePost);
 //agregar documentos
-}
+//}
 
 //leer documentos
 //let boxPost = document.getElementById('boxPost');
@@ -55,7 +55,7 @@ export function printPostCollection (divElement) {
           <tr>
             <td scope="row">${doc.data().userPost}</t>
             <td><button id = "btn-delete" class="btn btn-danger">Eliminar</button> </td>
-            <td><button id = "btn-edit" class="btn btn-warning" onclick="edit('${doc.id}','${doc.data().title}','${doc.data().userPost}')">Editar</button> </td>
+            <td><button id = "btn-edit" class="btn btn-warning">Editar</button> </td>
           </tr>
         </li>
           `;
@@ -63,9 +63,9 @@ export function printPostCollection (divElement) {
           document.querySelector('#btn-delete').addEventListener('click', function () {
             deletedPost(doc.id);
           })
-          //  document.querySelector('#btn-edit').addEventListener('click', ()=>{
-          //  editPost(doc.id, doc.data().title, doc.data().userPost)
-          //  })
+          document.querySelector('#btn-edit').addEventListener('click', function(){
+            editPost(doc.id, doc.data().title, doc.data().userPost);
+          })
     });
   });
 }
@@ -74,7 +74,7 @@ export function printPostCollection (divElement) {
 export function deletedPost(id) {
   db.collection('post')
     .doc(id)
-    .delete()
+    .delete(id)
     .then(function() {
       console.log('Document successfully deleted!');
     })
