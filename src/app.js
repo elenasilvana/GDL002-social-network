@@ -63,6 +63,9 @@ export function printPostCollection (divElement) {
           document.querySelector('#btn-delete').addEventListener('click', function () {
             deletedPost(doc.id);
           })
+          //  document.querySelector('#btn-edit').addEventListener('click', ()=>{
+          //  editPost(doc.id, doc.data().title, doc.data().userPost)
+          //  })
     });
   });
 }
