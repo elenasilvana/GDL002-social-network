@@ -1,6 +1,8 @@
 window.onload = () => {
-  location.hash = '#home'
+  location.hash = '#open-modal';
 }
+
+
 /**Función para registrarse en sitio con correo y pwd */
 function signUp(){
 
@@ -19,6 +21,9 @@ function signUp(){
       // ...
       console.log(errorCode);
       console.log(errorMessage);
+      alert('Verifica tus datos');
+
+      
   
     });
 }
@@ -49,7 +54,7 @@ document.getElementById('btn-login').addEventListener('click', login);
 // When the user clicks anywhere outside of the modal, close it
 //function that checks if the user is already log
 
-/**Función del Observador, verifica correo enviado, que exista el usuario, permite que el usuario visualice post en timeline */
+/**Función del Observador, verifica correo enviado, que exista el usuario, permite que el usuario visualizar post en timeline */
 function observer () {
     firebase.auth().onAuthStateChanged(function(user) {
       
@@ -59,6 +64,8 @@ function observer () {
           location.hash = '#timeline';
           // User is signed in.
           let displayName= user.displayName;
+          console.log('displayName');
+          
           let email = user.email;
           console.log('*****************');
           console.log(user.emailVerified);
@@ -67,40 +74,22 @@ function observer () {
           let photoURL = user.photoURL;
           let isAnonymous = user.isAnonymous;
           let uid = user.uid;
+          console.log(uid);
           let providerData = user.providerData;
           // Muestra Post una vez dentro.
-          db.collection('post').onSnapshot(querySnapshot => {
-            boxPost.innerHTML = '';
-            querySnapshot.forEach(doc => {
-              //console.log(`${doc.title} => ${doc.data().title}`);
-              boxPost.innerHTML += `
-                  <li>
-                  <tr>
-                    <th scope="col">${doc.data().title}</th>
-                  </tr>
-                  <tr>
-                    <td scope="row">${doc.data().userPost}</t>
-                    <td><button class="btn btn-danger" onclick="deleted('${doc.id}')">Eliminar</button> </td>
-                    <td><button class="btn btn-warning" onclick="edit('${doc.id}','${doc.data().title}',
-                    '${doc.data().userPost}')">Editar</button> </td>
-                  </tr>
-                </li>
-                  `;
-                });
-              });
-        } else if (user.emailVerified === true){
-            location.has = '#timeline';
-        } 
+          //printPostCollection(document.getElementById('boxPost'));
+         }
+         //else if (user.emailVerified === true){
+        //     location.hash = '#timeline';
+        // } 
         else {  
           console.log('No existe usuario activo');
-          validateUser.innerHTML =  alert("aun no te has registrado");
-          boxPost.innerHTML = '';
+          //validateUser.innerHTML =  alert("aun no te has registrado");
+         // boxPost.innerHTML = '';
         }
       });
 }
-
 observer();
-
 
 function close(){
 //log out
@@ -109,33 +98,33 @@ function close(){
   const validateUser = document.getElementById("validateUser");
   validateUser.innerHTML = "";
   location.hash = '#open-modal';
+  
 }
 
 /**Función Validación de cta en email de usuario*/
 function showValidation (user){
   //creates and shows a button for logout only if user is already login
-  var user = user;
+  //var user = user;
   const validateUser = document.getElementById("validateUser");
-  if (user.emailVerified){
-  validateUser.innerHTML =  `
-  <div class ="container mt-5">
-  <div class="alert alert-success" role="alert">
-  <h4 class="alert-heading">Bienvenido ${user.email}</h4>
-  <p>¡Ahora formas parte de nuestra comunidad!</p>
-  <hr>
-  <p class="mb-0"></p>
-  </div>
-  <button class="btn btn-danger" id="logOut">Cerrar Sesión</button>
-  </div>`;
+    if (user.emailVerified){
+    validateUser.innerHTML =  `
+    <div class ="container mt-5">
+    <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Bienvenido ${user.email}</h4>
+    <p>¡Ahora formas parte de nuestra comunidad!</p>
+    <hr>
+    <p class="mb-0"></p>
+    </div>
+    <button class="btn btn-danger" id="logOut">Cerrar Sesión</button>
+    </div>`;
 
-  document.getElementById("logOut").addEventListener('click', close);
-  }
+    document.getElementById("logOut").addEventListener('click', close);
+  } 
 
 }
 
 function verify(){
-
-  //verificación de correo electrónico
+//verificación de correo electrónico
   let user = firebase.auth().currentUser;
 
   user.sendEmailVerification().then(function() {
@@ -149,12 +138,13 @@ function verify(){
 
 function signWithGoogle(){
     var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(function(result) {
+    firebase.auth().signInWithRedirect(provider).then(function(result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
     var token = result.credential.accessToken;
     // The signed-in user info.
     var user = result.user;
     // ...
+    //timelineWall();
     }).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;

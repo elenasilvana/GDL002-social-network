@@ -2,14 +2,13 @@
 // Initialize Cloud Firestore through Firebase
 let db = firebase.firestore();
 //agregar documentos
-function savePost() {
+//esta funcion esta guardando los post en la nube de firestore
+export function savePost() {
   let title = document.getElementById('title').value;
   let userPost = document.getElementById('userPost').value;
-
-
     let info = document.getElementById('info-radio').checked;
     let swap = document.getElementById('swap-radio').checked;
-
+    console.log('estoy guardando tu post');
     if((info || swap) === true){
     	//todavía no hacemos nada con esto pero ya revisa que haya uno en true
     	console.log('hola')
@@ -31,31 +30,40 @@ function savePost() {
       console.error('Error adding document: ', error);
     });
 }
+
+
+if(window.location.hash === '#timeline') {
 document.getElementById('btn-post').addEventListener('click', savePost);
 //agregar documentos
+}
 
 //leer documentos
-/*let boxPost = document.getElementById('boxPost');
-db.collection('post').onSnapshot(querySnapshot => {
-  boxPost.innerHTML = '';
-  querySnapshot.forEach(doc => {
-    //console.log(`${doc.title} => ${doc.data().title}`);
-    boxPost.innerHTML += `
-        <li>
-        <tr>
-          <th scope="col">${doc.data().title}</th>
-        </tr>
-        <tr>
-          <td scope="row">${doc.data().userPost}</t>
-          <td><button class="btn btn-danger" onclick="deleted('${doc.id}')">Eliminar</button> </td>
-          <td><button class="btn btn-warning" onclick="edit('${doc.id}','${doc.data().title}','${
-      doc.data().userPost
-    }')">Editar</button> </td>
-        </tr>
-      </li>
-        `;
+let boxPost = document.getElementById('boxPost');
+
+
+export function printPostCollection (divElement) {
+  console.log('divElement', divElement);
+  db.collection('post').onSnapshot(querySnapshot => {
+    divElement.innerHTML = '';
+    querySnapshot.forEach(doc => {
+      //console.log(`${doc.title} => ${doc.data().title}`);
+      divElement.innerHTML += `
+          <li>
+          <tr>
+            <th scope="col">${doc.data().title}</th>
+          </tr>
+          <tr>
+            <td scope="row">${doc.data().userPost}</t>
+            <td><button class="btn btn-danger" onclick="deleted('${doc.id}')">Eliminar</button> </td>
+            <td><button class="btn btn-warning" onclick="edit('${doc.id}','${doc.data().title}','${
+        doc.data().userPost
+      }')">Editar</button> </td>
+          </tr>
+        </li>
+          `;
+    });
   });
-});*/
+}
 
 //borrar documentos
 function deleted(id) {
@@ -72,11 +80,12 @@ function deleted(id) {
 
 //editar documentos
 
+//la funcion de editar hay que modificarla
 function edit(id, title, userPost) {
   document.getElementById('title').value = title;
   document.getElementById('userPost').value = userPost;
 
-  let btnEdit = document.getElementById('btn-post');
+  //let btnEdit = document.getElementById('btn-post');
   btnEdit.innerHTML = 'Editar';
 
   btnEdit.onclick = function() {

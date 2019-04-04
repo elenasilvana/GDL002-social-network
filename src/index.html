@@ -22,9 +22,11 @@
 </head>
 
 <body>
+ 
    <!--div dinamico-->
    <div id = "content"></div>
-
+    <!-- Bienvenida -->
+    <div id="validateUser"></div>
   <header>
 
 
@@ -94,38 +96,28 @@
       </div>
     </div>
   </div>
-   
-  <!-- Bienvenida -->
-  <div id="validateUser">
-
-  </div>
+</div>
   
- 
-
-   <!-- Área para postear -->
-  <!-- <div class="container">
-    <h2>INFO O TRUEQUE:</h2>
-    <input type="text" id="title" placeholder="titulo" class="form control mt-3"> <br> <br>
-    <textarea type="text" id="userPost" placeholder="que deseas compartir" class="form control"></textarea>
-    <br>
-      <legend category="This field is mandatory">Requiered*</legend>
-      <input type="radio" required name="category" id="info-radio" value="INFO">information
-    <input type="radio" required name="category" id="swap-radio" value="SWAP">trueque -->
+ <!-- <p>hola timeline</p>
+  <div class="container">
+  <h2>INFO O TRUEQUE:</h2>
+  <input type="text" id="title" placeholder="titulo" class="form control mt-3"> <br> <br>
+  <textarea type="text" id="userPost" placeholder="que deseas compartir" class="form control"></textarea>
+  <br>
+  <legend category="This field is mandatory">Requiered*</legend>
+  <input type="radio" required name="category" id="info-radio" value="INFO">information
+  <input type="radio" required name="category" id="swap-radio" value="SWAP">trueque
+  <button type="button" class="btn btn-info m-5" id="btn-post">PUBLICAR</button> -->
+  
+<!-- Tabla donde se muestran los post 
+<table class="table my-3">
+  <tbody id="boxPost"></tbody>
+</table>
+</div>
+-->
     
-    <button type="button" class="btn btn-info m-5" id="btn-post">PUBLICAR</button>
-    <table class="table my-3">
-<!-- Tabla donde se muestran los post -->
-      <tbody id="boxPost">
-
-      </tbody>
-    </table>
-  </div>
+  
   <main>
-    </div>
-    </div>
-
-    
-   
 
   </main>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -138,10 +130,10 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
-  <script src="main.js"></script>
-  <script src="app.js"></script>
-  <script src="index.js"></script>
- 
+    <script src="main.js" type="module"></script>
+    <script src="routerPage.js" type="module"></script>
+    <script src="app.js" type ="module"></script>
+  <script src="index.js" type ="module"></script>
 
 </body>
 
