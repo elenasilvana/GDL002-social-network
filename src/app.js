@@ -38,7 +38,7 @@ document.getElementById('btn-post').addEventListener('click', savePost);
 }
 
 //leer documentos
-let boxPost = document.getElementById('boxPost');
+//let boxPost = document.getElementById('boxPost');
 
 
 export function printPostCollection (divElement) {
@@ -54,19 +54,21 @@ export function printPostCollection (divElement) {
           </tr>
           <tr>
             <td scope="row">${doc.data().userPost}</t>
-            <td><button class="btn btn-danger" onclick="deleted('${doc.id}')">Eliminar</button> </td>
-            <td><button class="btn btn-warning" onclick="edit('${doc.id}','${doc.data().title}','${
-        doc.data().userPost
-      }')">Editar</button> </td>
+            <td><button id = "btn-delete" class="btn btn-danger">Eliminar</button> </td>
+            <td><button id = "btn-edit" class="btn btn-warning" onclick="edit('${doc.id}','${doc.data().title}','${doc.data().userPost}')">Editar</button> </td>
           </tr>
         </li>
           `;
+          //******Remplazar onclick por un querySelect y hacer el click en el Template**************
+          document.querySelector('#btn-delete').addEventListener('click', function () {
+            deletedPost(doc.id);
+          })
     });
   });
 }
 
 //borrar documentos
-function deleted(id) {
+export function deletedPost(id) {
   db.collection('post')
     .doc(id)
     .delete()
@@ -80,11 +82,11 @@ function deleted(id) {
 
 //editar documentos
 
-//la funcion de editar hay que modificarla
-function edit(id, title, userPost) {
+/**Funcion de editar hay que modificarla */
+export function editPost(id, title, userPost) {
   document.getElementById('title').value = title;
   document.getElementById('userPost').value = userPost;
-
+ 
   //let btnEdit = document.getElementById('btn-post');
   btnEdit.innerHTML = 'Editar';
 
