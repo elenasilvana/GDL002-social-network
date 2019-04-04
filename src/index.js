@@ -6,15 +6,14 @@ let homePage = `
     <section  class = "home">
         Inicio
         <div>
-        <!--<a href="#home">Inicio</a>
+        <a href="#home">Inicio</a>
         <a href="#timeline">Info o Trueque</a>
-        <a href="#profile">Perfil</a>-->
+        <a href="#profile">Perfil</a>
         </div>
         <img class="image" src="" />
         <p>hola home</p>
-    `
-    divElem.innerHTML= homePage;
-    ;
+    `;
+    document.getElementById('content').innerHTML = homePage;
 }
 
 export const timelineWall= () =>{
@@ -65,14 +64,15 @@ let profilePage = `
     <section class="profile">
         Perfil
         <div>
+        <a href="#home">Inicio</a>
         <a href="#timeline">Info ó trueque</a>
         <a href="#profile">Perfil</a>
         </div>
         <img class="image" src="" />
         <p>Es mi perfil</p>
     </section>
-    `
-    divElem.innerHTML = profilePage;
+    `;
+    document.getElementById('content').innerHTML = profilePage;
 
 }
 

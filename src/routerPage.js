@@ -21,7 +21,8 @@ const showPage = (router) => {
 
     switch (router){
         case '#home':
-        content.appendChild(home());
+        content.innerHTML = '';
+        mainPage();
         break;
 
         case '#timeline':
@@ -31,7 +32,8 @@ const showPage = (router) => {
         break;
 
         case '#profile':
-        const profile = profile()
+        content.innerHTML = '';
+        profile();
         //content.innerHTML = profile;
         break;
         
