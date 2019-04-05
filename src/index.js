@@ -76,6 +76,7 @@ let profilePage = `
 
 }
 
+
 // let routes = {
 //     '': homePage,
 //     '#home': homePage,
