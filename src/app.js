@@ -54,19 +54,29 @@ export function printPostCollection (divElement) {
           </tr>
           <tr>
             <td scope="row">${doc.data().userPost}</t>
-            <td><button id = "btn-delete" class="btn btn-danger">Eliminar</button> </td>
-            <td><button id = "btn-edit" class="btn btn-warning">Editar</button> </td>
+            <td><button id = "${doc.id}" class="btn btn-danger btn-delete">Eliminar</button> </td>
+            <td><button id = "${doc.id}" title = "${doc.data().title}" post = "${doc.data().userPost}" class="btn btn-warning">Editar</button> </td>
           </tr>
         </li>
           `;
+          
+
           //******Remplazar onclick por un querySelect y hacer el click en el Template**************
-          document.querySelector('#btn-delete').addEventListener('click', function () {
-            deletedPost(doc.id);
-          })
-          document.querySelector('#btn-edit').addEventListener('click', function(){
-            editPost(doc.id, doc.data().title, doc.data().userPost);
-          })
+          // document.querySelector('#btn-delete-'+doc.id).addEventListener('click', function () {
+          //   deletedPost(doc.id);
+          // });
+          // document.querySelector('#btn-edit').addEventListener('click', function(){
+          //   editPost(doc.id, doc.data().title, doc.data().userPost);
+          // })
     });
+
+    let deleteButtons = document.querySelectorAll('.btn-delete');
+
+    for(var i = 0; i < deleteButtons.length; i++){
+      deleteButtons[i].addEventListener('click', function(event){
+        deletedPost(event.target.id);
+      });
+    }
   });
 }
 
@@ -74,7 +84,7 @@ export function printPostCollection (divElement) {
 export function deletedPost(id) {
   db.collection('post')
     .doc(id)
-    .delete(id)
+    .delete()
     .then(function() {
       console.log('Document successfully deleted!');
     })
