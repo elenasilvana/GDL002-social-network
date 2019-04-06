@@ -74,7 +74,7 @@ function observer () {
           let photoURL = user.photoURL;
           let isAnonymous = user.isAnonymous;
           let uid = user.uid;
-          console.log(uid);
+          console.log('user uid ' + uid);
           let providerData = user.providerData;
           // Muestra Post una vez dentro.
           //printPostCollection(document.getElementById('boxPost'));
