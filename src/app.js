@@ -4,10 +4,18 @@ let db = firebase.firestore();
 //agregar documentos
 //esta funcion esta guardando los post en la nube de firestore
 export function savePost() {
+  //aqui tendría que ir un userInfo
+
   let title = document.getElementById('title').value;
   let userPost = document.getElementById('userPost').value;
   let info = document.getElementById('info-radio').checked;
   let swap = document.getElementById('swap-radio').checked;
+
+  let like = 0;
+  let user = firebase.auth().currentUser;
+  let who = user.displayName;
+  let whoId = user.uid;
+
   console.log('estoy guardando tu post');
   if ((info || swap) === true) {
     //todavía no hacemos nada con esto pero ya revisa que haya uno en true
@@ -20,6 +28,9 @@ export function savePost() {
     .add({
       title: title,
       userPost: userPost,
+      like : like,
+      who : who,
+      whoId : whoId,
     })
     .then(function (docRef) {
       console.log('Document written with ID: ', docRef.id);
@@ -54,6 +65,7 @@ export function printPostCollection(divElement) {
           </tr>
           <tr>
             <td scope="row">${doc.data().userPost}</t>
+             <td><button id = "${doc.id}" like="${doc.data().like}" class="btn btn-danger btn-like">like</button> </td>
             <td><button id = "${doc.id}" class="btn btn-danger btn-delete">Eliminar</button> </td>
             <td><button id = "${doc.id}" title = "${doc.data().title}" message = "${doc.data().userPost}" class="btn btn-warning btn-edit">Editar</button> </td>
           </tr>
@@ -70,13 +82,23 @@ export function printPostCollection(divElement) {
       // })
     });
 
+    let likeButton = document.querySelectorAll('.btn-like');
+
+    for (var i = 0; i < likeButton.length; i++) {
+      likeButton[i].addEventListener('click', function (event) {
+        addLikes(event.target.id, event.target.getAttribute('like'));
+        //id, like
+      console.log(event.target.id, event.target.getAttribute('like'));
+      });
+    }
+
     let deleteButtons = document.querySelectorAll('.btn-delete');
 
     for (var i = 0; i < deleteButtons.length; i++) {
       deleteButtons[i].addEventListener('click', function (event) {
         deletedPost(event.target.id);
         console.log(event.target.id);
-    });
+      });
     }
 
     let editButtons = document.querySelectorAll('.btn-edit');
@@ -135,5 +157,38 @@ export function editPost(id, title, userPost) {
         console.error('Error updating document: ', error);
       });
   };
+}
+
+function addLikes (id, likes) {
+
+  likes++;
+
+  likes = parseInt(likes);
+
+  //la coleccion de post
+  //let washingtonRef = db.collection('post').doc(id);
+  let likesPostRef = db.collection('post').doc(id);
+
+  //return washingtonRef
+  return likesPostRef
+    .update({
+      like: likes,
+      
+    }).then(function(){
+      //let washingtonRef = (db.collection('post').doc(id)).id;
+      let likesPostRef = (db.collection('post').doc(id)).id;
+    
+        //el botón, buscar la imagen
+       let buttonLike= document.getElementById(likesPostRef);
+        buttonLike.innerHTML+= " " + likes;
+      })
+    .then(function() {
+      console.log('Document successfully updated!');
+    })
+
+    .catch(function(error) {
+      // The document probably doesn't exist.
+      console.error('Error updating document: ', error);
+    });
 }
 

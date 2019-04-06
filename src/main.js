@@ -59,6 +59,7 @@ function observer () {
     firebase.auth().onAuthStateChanged(function(user) {
       
         if (user) { 
+          console.log(user);
           console.log('Existe usuario activo');
           showValidation(user);
           location.hash = '#timeline';
@@ -74,7 +75,7 @@ function observer () {
           let photoURL = user.photoURL;
           let isAnonymous = user.isAnonymous;
           let uid = user.uid;
-          console.log(uid);
+          console.log('user uid ' + uid);
           let providerData = user.providerData;
           // Muestra Post una vez dentro.
           //printPostCollection(document.getElementById('boxPost'));
