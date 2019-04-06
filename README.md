@@ -1,5 +1,6 @@
 # Creando una Red Social
 ## ENRAIZADOS
+[ENRAIZADOS RED SOCIAL](https://selenehdz01.github.io/GDL002-social-network/src/)
 
 En la actualidad, el ritmo de vida que llevamos nos ha alejado de la naturaleza, del campo, de nuestras raíces. Sin embargo habemos muchos que sentimos la necesidad de tener contacto con la naturaleza y hemos adoptado distintos tipos de plantas aún estando en un entorno urbano, nos preocupamos por la recuperación y preservación de entornos verdes. En varias ocasiones nos dirigimos al internet buscando información de como cuidar las plantas que hemos adquirido o que hemos puesto a crecer desde su semilla. Realizamos una encuesta a más de 60 personas, el 70% de ellas poseen plantas porque consideran que tener plantas, brinda armonía a los espacios que habitan, todos ellos están interesados en tener información al respecto de como cuidarlas.
 
@@ -28,17 +29,17 @@ Para comenzar a echar raíces en nuestra red social, los usuarios deberán crear
 
 ## Prototipo de baja fidelidad
 
-(https://i.postimg.cc/2LBCwPxF/Enraizados-P1.png)
+![prototipo de baja](https://i.postimg.cc/2LBCwPxF/Enraizados-P1.png)
 
-(https://i.postimg.cc/9z4XC7jR/Enraizados-P2.png)
+![prototipo de baja 2](https://i.postimg.cc/9z4XC7jR/Enraizados-P2.png)
 
 ## Prototipo de alta fidelidad
 
-(https://i.postimg.cc/ZWLvpdnY/principal.png)
+![principal](https://i.postimg.cc/ZWLvpdnY/principal.png)
 
-(https://i.postimg.cc/3dmvr6Hv/Login2.png)
+![Login](https://i.postimg.cc/3dmvr6Hv/Login2.png)
 
-(https://i.postimg.cc/wtTyVjRX/Muro1.png)
+![Muro](https://i.postimg.cc/wtTyVjRX/Muro1.png)
 
 #Historias de usuario
 
