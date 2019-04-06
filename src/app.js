@@ -1,4 +1,4 @@
-
+ let postId= 0;
 // Initialize Cloud Firestore through Firebase
 let db = firebase.firestore();
 //agregar documentos
@@ -14,23 +14,30 @@ export function savePost() {
   let like = 0;
   let user = firebase.auth().currentUser;
   let who = user.displayName;
+  let userMail = user.email;
   let whoId = user.uid;
+  let category;
 
+  //se obtiene la categoría del radio seleccionado
   console.log('estoy guardando tu post');
-  if ((info || swap) === true) {
-    //todavía no hacemos nada con esto pero ya revisa que haya uno en true
-    console.log('hola')
-  }
-
-  //obtener el value del checkbox
+  //if ((info || swap) === true) {
+    if (info) {
+    //si info === true que pase a 
+    category = "info";
+    console.log(category);
+  } else { category = "swap";
+  console.log(category);
+}
 
   db.collection('post')
     .add({
+      postId: postId,
       title: title,
       userPost: userPost,
       like : like,
       who : who,
       whoId : whoId,
+      category: category,
     })
     .then(function (docRef) {
       console.log('Document written with ID: ', docRef.id);
@@ -40,6 +47,8 @@ export function savePost() {
     .catch(function (error) {
       console.error('Error adding document: ', error);
     });
+    postId++;
+    console.log(postId);
 }
 
 
@@ -57,6 +66,8 @@ export function printPostCollection(divElement) {
   db.collection('post').onSnapshot(querySnapshot => {
     divElement.innerHTML = '';
     querySnapshot.forEach(doc => {
+    //aquí no estoy segura pero debería hacerse el sort del postId para que los muestre ya con ese orden
+      //snaptshot filter, y evaluar la propiedad 
       //console.log(`${doc.title} => ${doc.data().title}`);
       divElement.innerHTML += `
           <li>
