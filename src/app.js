@@ -1,8 +1,8 @@
 
-// Initialize Cloud Firestore through Firebase
+/**Initialize Cloud Firestore through Firebase */
 let db = firebase.firestore();
-//agregar documentos
-//esta funcion esta guardando los post en la nube de firestore
+
+/** Función "savePost" guarda los post en la nube de firestore*/
 export function savePost() {
   //aqui tendría que ir un userInfo
 
@@ -28,9 +28,9 @@ export function savePost() {
     .add({
       title: title,
       userPost: userPost,
-      like : like,
-      who : who,
-      whoId : whoId,
+      like: like,
+      who: who,
+      whoId: whoId,
     })
     .then(function (docRef) {
       console.log('Document written with ID: ', docRef.id);
@@ -59,10 +59,6 @@ export function printPostCollection(divElement) {
     querySnapshot.forEach(doc => {
       //console.log(`${doc.title} => ${doc.data().title}`);
       divElement.innerHTML += `
-         
-
-        
-    
       <table class="table">
       <thead class="table-head-green" >
         <tr>
@@ -79,15 +75,6 @@ export function printPostCollection(divElement) {
       </tbody>
     </table>
           `;
-
-
-      //******Remplazar onclick por un querySelect y hacer el click en el Template**************
-      // document.querySelector('#btn-delete-'+doc.id).addEventListener('click', function () {
-      //   deletedPost(doc.id);
-      // });
-      // document.querySelector('#btn-edit').addEventListener('click', function(){
-      //   editPost(doc.id, doc.data().title, doc.data().userPost);
-      // })
     });
 
     let likeButton = document.querySelectorAll('.btn-like');
@@ -96,7 +83,7 @@ export function printPostCollection(divElement) {
       likeButton[i].addEventListener('click', function (event) {
         addLikes(event.target.id, event.target.getAttribute('like'));
         //id, like
-      console.log(event.target.id, event.target.getAttribute('like'));
+        console.log(event.target.id, event.target.getAttribute('like'));
       });
     }
 
@@ -111,13 +98,13 @@ export function printPostCollection(divElement) {
 
     let editButtons = document.querySelectorAll('.btn-edit');
 
-      for (let j = 0; j < editButtons.length; j++) {
-        editButtons[j].addEventListener('click', function (event) {
-          console.log(event.target.getAttribute('message'));
-          editPost(event.target.id, event.target.title, event.target.getAttribute('message'));
-        });
+    for (let j = 0; j < editButtons.length; j++) {
+      editButtons[j].addEventListener('click', function (event) {
+        console.log(event.target.getAttribute('message'));
+        editPost(event.target.id, event.target.title, event.target.getAttribute('message'));
+      });
 
-      }
+    }
   });
 }
 
@@ -167,7 +154,7 @@ export function editPost(id, title, userPost) {
   };
 }
 
-function addLikes (id, likes) {
+function addLikes(id, likes) {
 
   likes++;
 
@@ -181,20 +168,20 @@ function addLikes (id, likes) {
   return likesPostRef
     .update({
       like: likes,
-      
-    }).then(function(){
+
+    }).then(function () {
       //let washingtonRef = (db.collection('post').doc(id)).id;
       let likesPostRef = (db.collection('post').doc(id)).id;
-    
-        //el botón, buscar la imagen
-       let buttonLike= document.getElementById(likesPostRef);
-        buttonLike.innerHTML+= " " + likes;
-      })
-    .then(function() {
+
+      //el botón, buscar la imagen
+      let buttonLike = document.getElementById(likesPostRef);
+      buttonLike.innerHTML += " " + likes;
+    })
+    .then(function () {
       console.log('Document successfully updated!');
     })
 
-    .catch(function(error) {
+    .catch(function (error) {
       // The document probably doesn't exist.
       console.error('Error updating document: ', error);
     });
