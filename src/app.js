@@ -29,6 +29,9 @@ export function savePost() {
       title: title,
       userPost: userPost,
       like : like,
+// TODO: Add 'liked' property, needs to be boolean and initialized in false
+//       When a post is 'liked' it needs to be set to true
+//       like button needs to be disabled if 'liked' property is true
       who : who,
       whoId : whoId,
     })
