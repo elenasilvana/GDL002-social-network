@@ -59,17 +59,25 @@ export function printPostCollection(divElement) {
     querySnapshot.forEach(doc => {
       //console.log(`${doc.title} => ${doc.data().title}`);
       divElement.innerHTML += `
-          <li>
-          <tr>
-            <th scope="col">${doc.data().title}</th>
+         
+
+        
+    
+      <table class="table">
+      <thead class="table-head-green" >
+        <tr>
+          <th scope="col-12">${doc.data().title}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>${doc.data().userPost}</td>
+        </tr>
+        <tr>
+          <td><button id = "${doc.id}" like="${doc.data().like}" class="btn btn-danger btn-like green-btn"><i class="fas fa-leaf"></i>  Like</button> <button id = "${doc.id}" class="btn btn-danger btn-delete">Eliminar</button> <button id = "${doc.id}" title = "${doc.data().title}" message = "${doc.data().userPost}" class="btn btn-warning btn-edit">Editar</button> </td>
           </tr>
-          <tr>
-            <td scope="row">${doc.data().userPost}</t>
-             <td><button id = "${doc.id}" like="${doc.data().like}" class="btn btn-danger btn-like">like</button> </td>
-            <td><button id = "${doc.id}" class="btn btn-danger btn-delete">Eliminar</button> </td>
-            <td><button id = "${doc.id}" title = "${doc.data().title}" message = "${doc.data().userPost}" class="btn btn-warning btn-edit">Editar</button> </td>
-          </tr>
-        </li>
+      </tbody>
+    </table>
           `;
 
 
