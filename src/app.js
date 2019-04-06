@@ -6,27 +6,27 @@ let db = firebase.firestore();
 export function savePost() {
   let title = document.getElementById('title').value;
   let userPost = document.getElementById('userPost').value;
-    let info = document.getElementById('info-radio').checked;
-    let swap = document.getElementById('swap-radio').checked;
-    console.log('estoy guardando tu post');
-    if((info || swap) === true){
-    	//todavía no hacemos nada con esto pero ya revisa que haya uno en true
-    	console.log('hola')
-    }
-   
-    //obtener el value del checkbox
+  let info = document.getElementById('info-radio').checked;
+  let swap = document.getElementById('swap-radio').checked;
+  console.log('estoy guardando tu post');
+  if ((info || swap) === true) {
+    //todavía no hacemos nada con esto pero ya revisa que haya uno en true
+    console.log('hola')
+  }
+
+  //obtener el value del checkbox
 
   db.collection('post')
     .add({
       title: title,
       userPost: userPost,
     })
-    .then(function(docRef) {
+    .then(function (docRef) {
       console.log('Document written with ID: ', docRef.id);
       document.getElementById('title').value = '';
       document.getElementById('userPost').value = '';
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.error('Error adding document: ', error);
     });
 }
@@ -41,7 +41,7 @@ export function savePost() {
 //let boxPost = document.getElementById('boxPost');
 
 
-export function printPostCollection (divElement) {
+export function printPostCollection(divElement) {
   console.log('divElement', divElement);
   db.collection('post').onSnapshot(querySnapshot => {
     divElement.innerHTML = '';
@@ -55,28 +55,39 @@ export function printPostCollection (divElement) {
           <tr>
             <td scope="row">${doc.data().userPost}</t>
             <td><button id = "${doc.id}" class="btn btn-danger btn-delete">Eliminar</button> </td>
-            <td><button id = "${doc.id}" title = "${doc.data().title}" post = "${doc.data().userPost}" class="btn btn-warning">Editar</button> </td>
+            <td><button id = "${doc.id}" title = "${doc.data().title}" message = "${doc.data().userPost}" class="btn btn-warning btn-edit">Editar</button> </td>
           </tr>
         </li>
           `;
-          
 
-          //******Remplazar onclick por un querySelect y hacer el click en el Template**************
-          // document.querySelector('#btn-delete-'+doc.id).addEventListener('click', function () {
-          //   deletedPost(doc.id);
-          // });
-          // document.querySelector('#btn-edit').addEventListener('click', function(){
-          //   editPost(doc.id, doc.data().title, doc.data().userPost);
-          // })
+
+      //******Remplazar onclick por un querySelect y hacer el click en el Template**************
+      // document.querySelector('#btn-delete-'+doc.id).addEventListener('click', function () {
+      //   deletedPost(doc.id);
+      // });
+      // document.querySelector('#btn-edit').addEventListener('click', function(){
+      //   editPost(doc.id, doc.data().title, doc.data().userPost);
+      // })
     });
 
     let deleteButtons = document.querySelectorAll('.btn-delete');
 
-    for(var i = 0; i < deleteButtons.length; i++){
-      deleteButtons[i].addEventListener('click', function(event){
+    for (var i = 0; i < deleteButtons.length; i++) {
+      deleteButtons[i].addEventListener('click', function (event) {
         deletedPost(event.target.id);
-      });
+        console.log(event.target.id);
+    });
     }
+
+    let editButtons = document.querySelectorAll('.btn-edit');
+
+      for (let j = 0; j < editButtons.length; j++) {
+        editButtons[j].addEventListener('click', function (event) {
+          console.log(event.target.getAttribute('message'));
+          editPost(event.target.id, event.target.title, event.target.getAttribute('message'));
+        });
+
+      }
   });
 }
 
@@ -85,10 +96,10 @@ export function deletedPost(id) {
   db.collection('post')
     .doc(id)
     .delete()
-    .then(function() {
+    .then(function () {
       console.log('Document successfully deleted!');
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.error('Error removing document: ', error);
     });
 }
@@ -99,11 +110,11 @@ export function deletedPost(id) {
 export function editPost(id, title, userPost) {
   document.getElementById('title').value = title;
   document.getElementById('userPost').value = userPost;
- 
-  //let btnEdit = document.getElementById('btn-post');
+
+  let btnEdit = document.getElementById('btn-post');
   btnEdit.innerHTML = 'Editar';
 
-  btnEdit.onclick = function() {
+  btnEdit.onclick = function () {
     let ourCollection = db.collection('post').doc(id);
     let title = document.getElementById('title').value;
     let userPost = document.getElementById('userPost').value;
@@ -113,13 +124,13 @@ export function editPost(id, title, userPost) {
         title: title,
         userPost: userPost,
       })
-      .then(function() {
+      .then(function () {
         console.log('Document successfully updated!');
         btnEdit.innerHTML = 'Guardar';
         document.getElementById('title').value = '';
         document.getElementById('userPost').value = '';
       })
-      .catch(function(error) {
+      .catch(function (error) {
         // The document probably doesn't exist.
         console.error('Error updating document: ', error);
       });
