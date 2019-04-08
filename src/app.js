@@ -1,5 +1,6 @@
 
-/**Initialize Cloud Firestore through Firebase */
+ let postId= 0;
+// Initialize Cloud Firestore through Firebase
 let db = firebase.firestore();
 
 /** Función "savePost" guarda los post en la nube de firestore*/
@@ -14,27 +15,30 @@ export function savePost() {
   let like = 0;
   let user = firebase.auth().currentUser;
   let who = user.displayName;
+  let userMail = user.email;
   let whoId = user.uid;
+  let category;
 
-  console.log('estoy guardando tu post');
-  if ((info || swap) === true) {
-    //todavía no hacemos nada con esto pero ya revisa que haya uno en true
-    console.log('hola')
+  //se obtiene la categoría del radio seleccionado
+  if (info) {
+    category = "info";
   }
-
-  //obtener el value del checkbox
+  
+  else { category = "swap";
+  }
 
 // TODO: Add 'liked' property, needs to be boolean and initialized in false
 //       When a post is 'liked' it needs to be set to true
 //       like button needs to be disabled if 'liked' property is true
   db.collection('post')
     .add({
+      postId: postId,
       title: title,
       userPost: userPost,
       like : like,
       who : who,
       whoId : whoId,
-
+      category: category,
     })
     .then(function (docRef) {
       console.log('Document written with ID: ', docRef.id);
@@ -44,23 +48,17 @@ export function savePost() {
     .catch(function (error) {
       console.error('Error adding document: ', error);
     });
+    postId++;
+    console.log(postId);
 }
 
 
-//if(window.location.hash === '#timeline') {
-//document.getElementById('btn-post').addEventListener('click', savePost);
-//agregar documentos
-//}
-
-//leer documentos
-//let boxPost = document.getElementById('boxPost');
-
-
 export function printPostCollection(divElement) {
-  console.log('divElement', divElement);
   db.collection('post').onSnapshot(querySnapshot => {
     divElement.innerHTML = '';
     querySnapshot.forEach(doc => {
+    //aquí no estoy segura pero debería hacerse el sort del postId para que los muestre ya con ese orden
+      //snaptshot filter, y evaluar la propiedad 
       //console.log(`${doc.title} => ${doc.data().title}`);
       divElement.innerHTML += `
       <table class="table">
@@ -165,16 +163,13 @@ function addLikes(id, likes) {
   likes = parseInt(likes);
 
   //la coleccion de post
-  //let washingtonRef = db.collection('post').doc(id);
   let likesPostRef = db.collection('post').doc(id);
 
-  //return washingtonRef
   return likesPostRef
     .update({
       like: likes,
 
     }).then(function () {
-      //let washingtonRef = (db.collection('post').doc(id)).id;
       let likesPostRef = (db.collection('post').doc(id)).id;
 
       //el botón, buscar la imagen
