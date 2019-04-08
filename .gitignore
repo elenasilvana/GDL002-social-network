@@ -3,3 +3,12 @@
  .nyc_output/
 coverage/
 node_modules/
+
+
+  
+storage.rules
+.eslintignore  
+firestore.rules        
+.eslintrc  
+
+

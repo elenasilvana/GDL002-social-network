@@ -5,9 +5,15 @@
   <meta charset="utf-8">
   <title>Social Network</title>
   <link rel="stylesheet" href="style.css" />
+  <!--Redirect for gitHub pages-->
+  
   <!--Bootstrap-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
   <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
 
@@ -22,9 +28,27 @@
 </head>
 
 <body>
+<!-- 
+    
+      <table class="table">
+          <thead class="table-head-green" >
+            <tr>
+              <th scope="col-12">Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mark</td>
+            </tr>
+            <tr>
+              <td><button id = "${doc.id}" like="${doc.data().like}" class="btn btn-danger btn-like green-btn"><i class="fas fa-leaf"></i>  Like</button> <button id = "${doc.id}" class="btn btn-danger btn-delete">Eliminar</button> <button id = "${doc.id}" title = "${doc.data().title}" message = "${doc.data().userPost}" class="btn btn-warning btn-edit">Editar</button> </td>
+              </tr>
+          </tbody>
+        </table> -->
+      
  
    <!--div dinamico-->
-   <div id = "content"></div>
+   <div  id = "content"></div>
     <!-- Bienvenida -->
     <div id="validateUser"></div>
   <header>
@@ -37,20 +61,21 @@
 
  <div id="open-modal" class="modal-window">
 
-   <div>
+   <div class="col-lg-10 col-10">
 
      <a href="#modal-close" title="Close" class="modal-close">close &times;</a>
 
      <div class="container mt-3">
        <nav class="navbar navbar-dark bg-white">
-         <h1 class="modal-h1">Inicia sesión en Enraizados</h1>
+         <img style="padding-bottom: 20px;" src="https://i.postimg.cc/3ryYb2n7/En-Raizados.png"/>
+         <p class="modal-h1 titles-app">Inicia sesión en Enraizados</p>
          <div class="form">
            <input type="e-mail" placeholder="Correo" id="loginMail" class="form-control form-control-sm mr-sm-2">
            <input type="password" placeholder="Contraseña" id="loginPwd" class="form-control form-control-sm mr-sm-2">
-           <button id="btn-login" class="btn btn-success my-2 my-sm-0 btn-sm col-md-10">Ingresar</button>
-           <button id="loginGoogle" class="btn btn-success my-2 my-sm-2 btn-sm col-md-10">Continuar con Google</button>
+           <button id="btn-login" class="btn btn-success my-2 my-sm-0 btn-sm col-md-10 green-btn">Ingresar</button>
+           <button id="loginGoogle" class="btn btn-success my-2 my-sm-2 btn-sm col-md-10 red-btn"><i class="fab fa-google"></i>  Continuar con Google</button>
            <div>ó</div>
-           <button class="btn btn-danger my-2 my-sm-0 btn-sm ml-2" data-toggle="modal"
+           <button class="btn btn-danger my-2 my-sm-0 btn-sm ml-2 green-btn" data-toggle="modal"
              data-target="#exampleModal">Crear mi cuenta</button>
          </div>
        </nav>

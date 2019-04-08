@@ -1,4 +1,4 @@
-/*
+
 
 body {
   /*background: url(https://claudiagarfias.works/laboratoria/sharedimages/fern-918570_1920.jpg) no-repeat center center fixed; 
@@ -57,7 +57,7 @@ p{
 }
 
 .modal-window>div {
-  width: 30%;
+  /* width: 30%; */
   position: relative;
   margin: 10% auto;
   padding: 2rem;
@@ -69,7 +69,7 @@ p{
   font-weight: bold;
 }
 .modal-window input {
-  border-radius: 10px;
+  border-radius: 0px;
   background-image: none !important;
   border: ;
   margin: .40rem;
@@ -107,10 +107,42 @@ p{
   background-color:white;
 }
 
-.modal-h1 {
+/* .modal-h1 {
   
-}  
+}   */
+.list-styled{
+  list-style: none;
+}
+.green-btn {
+    font-family: 'Montserrat', sans-serif  !important;
+    background-color: #6CB969 !important;
+    border: none  !important;
+    border-radius: 0px !important;
+}
+.titles-app{
+font-family: 'Montserrat', sans-serif;
+text-transform: uppercase;
+font-size: 1em;
+letter-spacing: 3px;
+line-height: 1.5em;
+color: #6CB969;
+}
 
-*/
+.red-btn {
 
-/* porfavor guardate */
+  font-family: 'Montserrat', sans-serif !important;
+  background-color: #DE4E2F !important;
+  border: none !important;
+  border-radius: 0px !important;
+}
+.table-head-green{
+
+  background-color: #499246;
+  border: none !important;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+
+}
+.table td, .table th {
+  font-family: 'Montserrat', sans-serif !important;
+}

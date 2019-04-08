@@ -31,15 +31,14 @@ let timeline = `
     <img class="image" src="" />
     <p>hola timeline en TEMPLATE</p>
     
-    <div class="container">
+    <div class="container" style="text-align:center">
         <h2>INFO O TRUEQUE:</h2>
-        <input type="text" id="title" placeholder="titulo" class="form control mt-3"> <br> <br>
-        <textarea type="text" id="userPost" placeholder="que deseas compartir" class="form control"></textarea>
+        <input type="text" id="title" placeholder="titulo" class="form control col-12 col-lg-8"> <br> <br>
+        <textarea type="text" id="userPost" placeholder="que deseas compartir" class="form control col-12 col-lg-8"></textarea>
         <br>
-        <legend category="This field is mandatory">Requiered*</legend>
         <input type="radio" required name="category" id="info-radio" value="INFO">information
         <input type="radio" required name="category" id="swap-radio" value="SWAP">trueque
-        <button type="button" class="btn btn-info m-5" id="btn-post">PUBLICAR</button>
+        <button type="button" class="btn btn-info m-5 green-btn" id="btn-post">PUBLICAR</button>
         <!-- Tabla donde se muestran los post -->
         <table class="table my-3">
             <tbody id="boxPost"></tbody>

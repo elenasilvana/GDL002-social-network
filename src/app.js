@@ -1,8 +1,9 @@
+
  let postId= 0;
 // Initialize Cloud Firestore through Firebase
 let db = firebase.firestore();
-//agregar documentos
-//esta funcion esta guardando los post en la nube de firestore
+
+/** Función "savePost" guarda los post en la nube de firestore*/
 export function savePost() {
   //aqui tendría que ir un userInfo
 
@@ -19,16 +20,16 @@ export function savePost() {
   let category;
 
   //se obtiene la categoría del radio seleccionado
-  console.log('estoy guardando tu post');
-  //if ((info || swap) === true) {
-    if (info) {
-    //si info === true que pase a 
+  if (info) {
     category = "info";
-    console.log(category);
-  } else { category = "swap";
-  console.log(category);
-}
+  }
+  
+  else { category = "swap";
+  }
 
+// TODO: Add 'liked' property, needs to be boolean and initialized in false
+//       When a post is 'liked' it needs to be set to true
+//       like button needs to be disabled if 'liked' property is true
   db.collection('post')
     .add({
       postId: postId,
@@ -52,17 +53,7 @@ export function savePost() {
 }
 
 
-//if(window.location.hash === '#timeline') {
-//document.getElementById('btn-post').addEventListener('click', savePost);
-//agregar documentos
-//}
-
-//leer documentos
-//let boxPost = document.getElementById('boxPost');
-
-
 export function printPostCollection(divElement) {
-  console.log('divElement', divElement);
   db.collection('post').onSnapshot(querySnapshot => {
     divElement.innerHTML = '';
     querySnapshot.forEach(doc => {
@@ -70,27 +61,22 @@ export function printPostCollection(divElement) {
       //snaptshot filter, y evaluar la propiedad 
       //console.log(`${doc.title} => ${doc.data().title}`);
       divElement.innerHTML += `
-          <li>
-          <tr>
-            <th scope="col">${doc.data().title}</th>
+      <table class="table">
+      <thead class="table-head-green" >
+        <tr>
+          <th scope="col-12">${doc.data().title}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>${doc.data().userPost}</td>
+        </tr>
+        <tr>
+          <td><button id = "${doc.id}" like="${doc.data().like}" class="btn btn-danger btn-like green-btn"><i class="fas fa-leaf"></i>  Like</button> <button id = "${doc.id}" class="btn btn-danger btn-delete">Eliminar</button> <button id = "${doc.id}" title = "${doc.data().title}" message = "${doc.data().userPost}" class="btn btn-warning btn-edit">Editar</button> </td>
           </tr>
-          <tr>
-            <td scope="row">${doc.data().userPost}</t>
-             <td><button id = "${doc.id}" like="${doc.data().like}" class="btn btn-danger btn-like">like</button> </td>
-            <td><button id = "${doc.id}" class="btn btn-danger btn-delete">Eliminar</button> </td>
-            <td><button id = "${doc.id}" title = "${doc.data().title}" message = "${doc.data().userPost}" class="btn btn-warning btn-edit">Editar</button> </td>
-          </tr>
-        </li>
+      </tbody>
+    </table>
           `;
-
-
-      //******Remplazar onclick por un querySelect y hacer el click en el Template**************
-      // document.querySelector('#btn-delete-'+doc.id).addEventListener('click', function () {
-      //   deletedPost(doc.id);
-      // });
-      // document.querySelector('#btn-edit').addEventListener('click', function(){
-      //   editPost(doc.id, doc.data().title, doc.data().userPost);
-      // })
     });
 
     let likeButton = document.querySelectorAll('.btn-like');
@@ -99,7 +85,7 @@ export function printPostCollection(divElement) {
       likeButton[i].addEventListener('click', function (event) {
         addLikes(event.target.id, event.target.getAttribute('like'));
         //id, like
-      console.log(event.target.id, event.target.getAttribute('like'));
+        console.log(event.target.id, event.target.getAttribute('like'));
       });
     }
 
@@ -114,13 +100,13 @@ export function printPostCollection(divElement) {
 
     let editButtons = document.querySelectorAll('.btn-edit');
 
-      for (let j = 0; j < editButtons.length; j++) {
-        editButtons[j].addEventListener('click', function (event) {
-          console.log(event.target.getAttribute('message'));
-          editPost(event.target.id, event.target.title, event.target.getAttribute('message'));
-        });
+    for (let j = 0; j < editButtons.length; j++) {
+      editButtons[j].addEventListener('click', function (event) {
+        console.log(event.target.getAttribute('message'));
+        editPost(event.target.id, event.target.title, event.target.getAttribute('message'));
+      });
 
-      }
+    }
   });
 }
 
@@ -170,34 +156,31 @@ export function editPost(id, title, userPost) {
   };
 }
 
-function addLikes (id, likes) {
+function addLikes(id, likes) {
 
   likes++;
 
   likes = parseInt(likes);
 
   //la coleccion de post
-  //let washingtonRef = db.collection('post').doc(id);
   let likesPostRef = db.collection('post').doc(id);
 
-  //return washingtonRef
   return likesPostRef
     .update({
       like: likes,
-      
-    }).then(function(){
-      //let washingtonRef = (db.collection('post').doc(id)).id;
+
+    }).then(function () {
       let likesPostRef = (db.collection('post').doc(id)).id;
-    
-        //el botón, buscar la imagen
-       let buttonLike= document.getElementById(likesPostRef);
-        buttonLike.innerHTML+= " " + likes;
-      })
-    .then(function() {
+
+      //el botón, buscar la imagen
+      let buttonLike = document.getElementById(likesPostRef);
+      buttonLike.innerHTML += " " + likes;
+    })
+    .then(function () {
       console.log('Document successfully updated!');
     })
 
-    .catch(function(error) {
+    .catch(function (error) {
       // The document probably doesn't exist.
       console.error('Error updating document: ', error);
     });
