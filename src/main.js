@@ -85,8 +85,7 @@ function observer () {
         // } 
         else {  
           console.log('No existe usuario activo');
-          //validateUser.innerHTML =  alert("aun no te has registrado");
-         // boxPost.innerHTML = '';
+
         }
       });
 }

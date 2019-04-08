@@ -1,18 +1,21 @@
+//postId is a post counter to order them later
+let postId= 0;
 
- let postId= 0;
 // Initialize Cloud Firestore through Firebase
 let db = firebase.firestore();
 
-/** Función "savePost" guarda los post en la nube de firestore*/
+//Función "savePost" guarda los post en la nube de firestore
+//save posts in firestore cloud
 export function savePost() {
-  //aqui tendría que ir un userInfo
 
   let title = document.getElementById('title').value;
   let userPost = document.getElementById('userPost').value;
   let info = document.getElementById('info-radio').checked;
   let swap = document.getElementById('swap-radio').checked;
 
+  //like counter
   let like = 0;
+
   let user = firebase.auth().currentUser;
   let who = user.displayName;
   let userMail = user.email;
@@ -20,6 +23,7 @@ export function savePost() {
   let category;
 
   //se obtiene la categoría del radio seleccionado
+  //get category selected by user
   if (info) {
     category = "info";
   }
@@ -29,7 +33,7 @@ export function savePost() {
 
 // TODO: Add 'liked' property, needs to be boolean and initialized in false
 //       When a post is 'liked' it needs to be set to true
-//       like button needs to be disabled if 'liked' property is true
+//
   db.collection('post')
     .add({
       postId: postId,
@@ -157,6 +161,7 @@ export function editPost(id, title, userPost) {
 }
 
 function addLikes(id, likes) {
+// TODO      like button needs to be disabled if 'liked' property is true
 
   likes++;
 

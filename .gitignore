@@ -5,7 +5,7 @@ coverage/
 node_modules/
 
 
-  
+data.js  
 storage.rules
 .eslintignore  
 firestore.rules        
